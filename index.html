@@ -4,237 +4,590 @@
   <meta charset="UTF-8" />
   <title>Adi Shnaidman</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Adi Shnaidman — Machine Learning Researcher. LLM safety, robustness, adversarial ML, and evaluation." />
 
   <style>
-    :root {
-      --bg: #ffffff;
-      --text: #0f172a;
-      --muted: #475569;
-      --border: #e5e7eb;
-      --accent: #1a73e8;
-      --chip: #f1f5f9;
-      --shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 8px 24px rgba(15, 23, 42, 0.06);
-      --radius: 14px;
+    :root{
+      --bg:#ffffff;
+      --surface:#ffffff;
+      --text:#0b1220;
+      --muted:#4b5563;
+      --muted2:#6b7280;
+      --border:#e5e7eb;
+      --accent:#2563eb;
+      --chip:#f1f5f9;
+      --shadow: 0 1px 2px rgba(2,6,23,.06), 0 10px 30px rgba(2,6,23,.08);
+      --radius: 16px;
+      --radiusSm: 12px;
     }
 
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
+    *{ box-sizing:border-box; }
+    html, body{ height:100%; }
+    body{
+      margin:0;
+      background: radial-gradient(1200px 600px at 20% -10%, rgba(37,99,235,.10), transparent 55%),
+                  radial-gradient(900px 500px at 85% 0%, rgba(14,165,233,.08), transparent 50%),
+                  var(--bg);
+      color:var(--text);
       font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
                    Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      line-height: 1.65;
+      line-height:1.65;
     }
 
-    .container {
-      max-width: 860px;
-      margin: 64px auto;
+    a{ color:var(--accent); text-decoration:none; font-weight:600; }
+    a:hover{ text-decoration:underline; }
+    .muted{ color:var(--muted); }
+    .muted2{ color:var(--muted2); }
+
+    .container{
+      max-width: 980px;
+      margin: 56px auto;
       padding: 0 22px 72px;
     }
 
-    header {
-      padding: 28px;
-      border: 1px solid var(--border);
+    /* Header */
+    .hero{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      justify-content:space-between;
+      padding: 26px;
+      border:1px solid var(--border);
       border-radius: var(--radius);
+      background: rgba(255,255,255,.86);
+      backdrop-filter: blur(8px);
       box-shadow: var(--shadow);
-      background: #fff;
     }
 
-    h1 {
-      margin: 0 0 6px 0;
-      font-size: 2.2rem;
-      letter-spacing: -0.02em;
-      line-height: 1.15;
+    .hero-left{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      min-width: 0;
     }
 
-    .headline {
-      margin: 0;
+    .avatar{
+      width: 82px;
+      height: 82px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, rgba(37,99,235,.12), rgba(14,165,233,.10));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      flex: 0 0 auto;
+    }
+
+    /* If you add an image file later, it will fill this circle nicely */
+    .avatar img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .name{
+      margin:0;
+      font-size: 2.1rem;
+      letter-spacing:-0.02em;
+      line-height:1.15;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .tagline{
+      margin: 6px 0 0 0;
       color: var(--muted);
       font-size: 1.05rem;
     }
 
-    .links {
-      margin-top: 14px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+    .meta-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px 14px;
+      margin-top: 10px;
+      color: var(--muted2);
+      font-size: 0.98rem;
+    }
+    .meta-item{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding:6px 10px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      background:#fff;
+    }
+    .dot{
+      width:6px; height:6px; border-radius:50%;
+      background: rgba(37,99,235,.9);
+      display:inline-block;
     }
 
-    a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 600;
+    .hero-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      align-items:center;
     }
 
-    a:hover { text-decoration: underline; }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 18px;
-      margin-top: 18px;
-    }
-
-    @media (max-width: 860px) {
-      .grid { grid-template-columns: 1fr; }
-    }
-
-    .card {
-      padding: 22px;
+    .btn{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding: 10px 12px;
+      border-radius: 12px;
       border: 1px solid var(--border);
-      border-radius: var(--radius);
       background: #fff;
+      box-shadow: 0 1px 2px rgba(2,6,23,.04);
+      font-weight:700;
+      color: var(--text);
+    }
+    .btn:hover{ border-color:#d1d5db; text-decoration:none; }
+    .btn.primary{
+      background: var(--accent);
+      color:#fff;
+      border-color: rgba(37,99,235,.9);
+    }
+    .btn.primary:hover{ filter: brightness(0.98); }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 18px;
+    }
+    @media (max-width: 980px){
+      .hero{ flex-direction:column; align-items:flex-start; }
+      .hero-actions{ justify-content:flex-start; }
+    }
+    @media (max-width: 860px){
+      .grid{ grid-template-columns: 1fr; }
+      .name{ white-space:normal; }
+    }
+
+    /* Cards */
+    .card{
+      padding: 22px;
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.88);
+      backdrop-filter: blur(8px);
       box-shadow: var(--shadow);
     }
 
-    h2 {
+    .card + .card{ margin-top: 18px; }
+
+    h2{
       margin: 0 0 10px 0;
       font-size: 1.15rem;
-      letter-spacing: -0.01em;
+      letter-spacing:-0.01em;
     }
 
-    p { margin: 10px 0; }
-
-    .muted { color: var(--muted); }
-
-    ul {
-      margin: 10px 0 0;
-      padding-left: 1.1rem;
+    .section-note{
+      margin: 0 0 12px 0;
+      color: var(--muted2);
+      font-size: 0.98rem;
     }
 
-    li { margin: 6px 0; }
+    .divider{
+      height:1px;
+      background: var(--border);
+      margin: 18px 0;
+    }
 
-    .chips {
-      margin-top: 10px;
-      display: flex;
-      flex-wrap: wrap;
+    /* Chips */
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
       gap: 8px;
+      margin-top: 10px;
     }
-
-    .chip {
-      display: inline-flex;
-      padding: 6px 10px;
+    .chip{
+      display:inline-flex;
+      padding: 7px 10px;
       border-radius: 999px;
-      background: var(--chip);
       border: 1px solid var(--border);
+      background: var(--chip);
       color: var(--muted);
       font-size: 0.92rem;
       white-space: nowrap;
     }
 
-    .pub {
-      margin-top: 10px;
-      padding-top: 10px;
-      border-top: 1px dashed var(--border);
+    /* Experience timeline */
+    .timeline{
+      display:flex;
+      flex-direction:column;
+      gap: 14px;
+      margin-top: 6px;
     }
-
-    .pub:first-of-type {
-      border-top: none;
-      padding-top: 0;
+    .role{
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radiusSm);
+      background: #fff;
     }
+    .role-head{
+      display:flex;
+      gap: 10px;
+      align-items:baseline;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .role-title{
+      margin:0;
+      font-weight:800;
+    }
+    .role-org{
+      margin:0;
+      color: var(--muted);
+      font-weight:700;
+    }
+    .role-time{
+      color: var(--muted2);
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
+    .role ul{
+      margin: 10px 0 0;
+      padding-left: 1.1rem;
+    }
+    .role li{ margin: 6px 0; }
 
-    .pub-title {
+    /* Publications */
+    .publist{
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+      margin-top: 6px;
+    }
+    .pub{
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radiusSm);
+      background: #fff;
+    }
+    .pub-title{
       margin: 0;
-      font-weight: 700;
+      font-weight: 850;
     }
-
-    .pub-meta {
-      margin: 4px 0 0;
+    .pub-meta{
+      margin: 5px 0 0;
+      color: var(--muted2);
+      font-size: 0.95rem;
+    }
+    .pub-auth{
+      margin: 6px 0 0;
       color: var(--muted);
       font-size: 0.95rem;
     }
 
-    footer {
+    /* Footer */
+    footer{
       margin-top: 22px;
-      padding-top: 14px;
-      color: var(--muted);
+      color: var(--muted2);
       font-size: 0.95rem;
+      display:flex;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:10px;
+      padding: 0 6px;
+    }
+
+    /* Accessibility */
+    .sr-only{
+      position:absolute;
+      width:1px;
+      height:1px;
+      padding:0;
+      margin:-1px;
+      overflow:hidden;
+      clip:rect(0,0,0,0);
+      white-space:nowrap;
+      border:0;
     }
   </style>
 </head>
 
 <body>
   <main class="container">
-    <header>
-      <h1>Adi Shnaidman</h1>
-      <p class="headline">
-        Machine Learning Researcher · LLM Safety, Robustness, and Adversarial Machine Learning
-      </p>
 
-      <nav class="links" aria-label="Primary links">
-        <a href="https://github.com/AdiShnaidman">GitHub</a>
-        <a href="https://www.linkedin.com/in/adi-shnaidman/">LinkedIn</a>
-        <!-- Optional: add an email once you want it public
-        <a href="mailto:you@email.com">Email</a>
-        -->
+    <!-- HERO -->
+    <header class="hero">
+      <div class="hero-left">
+        <div class="avatar" aria-label="Profile photo">
+          <!--
+            HOW TO ADD A PICTURE (GitHub Pages):
+            1) In your repo, create a folder named: assets
+            2) Upload a photo there, e.g. assets/profile.jpg (use .jpg or .png)
+            3) Replace the line below with:
+                 <img src="assets/profile.jpg" alt="Adi Shnaidman" />
+            Tip: square image works best. It will be cropped to a circle automatically.
+          -->
+          <span class="muted2" style="font-weight:800;">AS</span>
+        </div>
+
+        <div style="min-width:0;">
+          <h1 class="name">Adi Shnaidman</h1>
+          <p class="tagline">
+            Machine Learning Researcher · LLM Safety &amp; Robustness · Adversarial ML
+          </p>
+
+          <div class="meta-row" aria-label="Quick facts">
+            <span class="meta-item"><span class="dot"></span>Herzliya, Tel Aviv District, Israel</span>
+            <span class="meta-item"><span class="dot"></span>DeepKeep</span>
+            <span class="meta-item"><span class="dot"></span>The Hebrew University of Jerusalem</span>
+          </div>
+        </div>
+      </div>
+
+      <nav class="hero-actions" aria-label="Links">
+        <a class="btn primary" href="mailto:adishnaidman@gmail.com">Email</a>
+        <a class="btn" href="https://www.linkedin.com/in/adi-shnaidman/">LinkedIn</a>
+        <a class="btn" href="https://github.com/AdiShnaidman">GitHub</a>
+        <!-- Optional: add your Google Scholar link if you have one -->
+        <!-- <a class="btn" href="https://scholar.google.com/citations?user=YOUR_ID">Scholar</a> -->
       </nav>
     </header>
 
     <section class="grid">
-      <div class="card">
-        <h2>About</h2>
-        <p>
-          I am a Machine Learning Researcher working on robustness, safety, and reliability in large language models,
-          with an emphasis on adversarial behavior, misuse, and real-world failure modes.
-        </p>
+      <!-- MAIN COLUMN -->
+      <div>
+        <section class="card" id="about">
+          <h2>About</h2>
+          <p>
+            I’m a Machine Learning Researcher focused on advancing the robustness, safety, and reliability of large language models.
+            At DeepKeep, I research and build real-time detection and mitigation strategies to protect LLMs against adversarial prompts,
+            misuse, and unintended behaviors.
+          </p>
+          <p>
+            As part of this work, I stress-test models under adversarial, edge-case, and real-world conditions to uncover vulnerabilities
+            and develop research-driven solutions that strengthen model performance, integrity, and safe deployment.
+          </p>
+          <p>
+            I’m also involved in collaborative ML research initiatives with leading academic institutions.
+            Before DeepKeep, I worked at the intersection of computational modeling, algorithm development, and high-dimensional data analysis,
+            applying machine learning across cognitive, neural, and high-frequency movement data domains.
+          </p>
 
-        <h2 style="margin-top: 18px;">Current Work</h2>
-        <p>
-          At <strong>DeepKeep</strong>, I research and build real-time detection and mitigation strategies to protect LLMs
-          against adversarial prompts and behavioral vulnerabilities. This includes large-scale stress testing, evaluation
-          framework design, and research-driven security solutions for production systems.
-        </p>
+          <div class="divider"></div>
 
-        <h2 style="margin-top: 18px;">Selected Publications</h2>
+          <h2>Research Interests</h2>
+          <p class="section-note">Current themes and topics I work on.</p>
+          <div class="chips" aria-label="Research interests">
+            <span class="chip">LLM safety &amp; robustness</span>
+            <span class="chip">Adversarial prompting &amp; prompt injection</span>
+            <span class="chip">LLM evaluation &amp; benchmarking</span>
+            <span class="chip">Behavioral reliability &amp; misalignment</span>
+            <span class="chip">Model over-generation &amp; misuse</span>
+            <span class="chip">Interpretability (mechanistic / representation)</span>
+            <span class="chip">Inference-time control &amp; steering</span>
+          </div>
+        </section>
 
-        <div class="pub">
-          <p class="pub-title">Activation Steering for Masked Diffusion Language Models</p>
-          <p class="pub-meta">arXiv · 2026</p>
-        </div>
+        <section class="card" id="publications">
+          <h2>Selected Publications &amp; Contributions</h2>
+          <div class="publist">
+            <article class="pub">
+              <p class="pub-title">Activation Steering for Masked Diffusion Language Models</p>
+              <p class="pub-meta">arXiv · 2026 · Under review (ICLR ReALM–GEN workshop)</p>
+              <p class="pub-auth">
+                A. Shnaidman, E. Feiglin, O. Yaari, E. Mentel, A. Levi, R. Lapid
+              </p>
+            </article>
 
-        <div class="pub">
-          <p class="pub-title">BenchOverflow: Measuring Overflow in Large Language Models via Plain-Text Prompts</p>
-          <p class="pub-meta">NVIDIA GTC 2026 · Transactions on Machine Learning Research (TMLR)</p>
-        </div>
+            <article class="pub">
+              <p class="pub-title">BenchOverflow: Measuring Overflow in Large Language Models via Plain-Text Prompts</p>
+              <p class="pub-meta">TMLR · 2025 · Accepted to NVIDIA GTC 2026</p>
+              <p class="pub-auth">Acknowledged contributor</p>
+            </article>
 
-        <footer>
-          <span class="muted">Last updated:</span> <span id="lastUpdated"></span>
-        </footer>
+            <article class="pub">
+              <p class="pub-title">Structure–Function Tradeoffs in the Human Brain</p>
+              <p class="pub-meta">Unpublished · 2024</p>
+              <p class="pub-auth">A. Shnaidman, A. Meisel, O. Ventura</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="card" id="experience">
+          <h2>Professional Experience</h2>
+          <div class="timeline">
+
+            <div class="role">
+              <div class="role-head">
+                <div>
+                  <p class="role-title">Machine Learning Researcher</p>
+                  <p class="role-org">DeepKeep · Full-time</p>
+                </div>
+                <div class="role-time">Apr 2025 – Present</div>
+              </div>
+              <ul>
+                <li>Research robustness, safety, and trustworthiness of LLMs, with a focus on adversarial vulnerabilities, misalignment, and behavioral reliability.</li>
+                <li>Design and implement large-scale evaluation frameworks to stress-test models under adversarial, edge-case, and real-world threat scenarios.</li>
+                <li>Develop real-time detection and mitigation algorithms to improve reliability and safe deployment.</li>
+                <li>Contribute to publications within DeepKeep’s ML Security Research Department.</li>
+              </ul>
+            </div>
+
+            <div class="role">
+              <div class="role-head">
+                <div>
+                  <p class="role-title">Data Scientist</p>
+                  <p class="role-org">ComDePri Lab (Computational Design Principles of Cognition)</p>
+                </div>
+                <div class="role-time">Jun 2024 – May 2025</div>
+              </div>
+              <ul>
+                <li>Applied statistical physics, machine learning, and big-data analysis to reconstruct and model high-frequency human movement data.</li>
+                <li>Developed time-series models and analytical tools (interpolation, structural analysis, large-scale processing) to reveal latent structure.</li>
+                <li>Built predictive modeling and data mining workflows to extract actionable insights from complex datasets.</li>
+              </ul>
+            </div>
+
+            <div class="role">
+              <div class="role-head">
+                <div>
+                  <p class="role-title">Capstone Researcher &amp; Data Scientist</p>
+                  <p class="role-org">ComDePri Lab</p>
+                </div>
+                <div class="role-time">Oct 2023 – Oct 2024</div>
+              </div>
+              <ul>
+                <li>Investigated Pareto Task Inference: trade-offs in structural vs. functional brain connectivity.</li>
+                <li>Processed high-dimensional neuroimaging data (structural MRI / fMRI) to extract meaningful structure.</li>
+                <li>Designed dimensionality reduction and archetypal analysis to connect structural features with functional archetypes.</li>
+              </ul>
+            </div>
+
+            <div class="role">
+              <div class="role-head">
+                <div>
+                  <p class="role-title">Principal Research &amp; Data Lead</p>
+                  <p class="role-org">Confidential · Data Research &amp; Analytics Department</p>
+                </div>
+                <div class="role-time">Dec 2020 – Oct 2021</div>
+              </div>
+              <ul>
+                <li>Worked with the head of the research division, directing research efforts as a domain expert.</li>
+                <li>Provided strategic insights and data-driven recommendations to support high-stakes decision-making.</li>
+                <li>Advised cross-functional teams on best practices for data analysis and intelligence gathering.</li>
+              </ul>
+            </div>
+
+            <div class="role">
+              <div class="role-head">
+                <div>
+                  <p class="role-title">Head of Intelligence Research &amp; Data Analysis Teams</p>
+                  <p class="role-org">Confidential · Data Research &amp; Analytics Department</p>
+                </div>
+                <div class="role-time">Feb 2019 – Dec 2020</div>
+              </div>
+              <ul>
+                <li>Led data analysis teams and oversaw complex analytics initiatives for high-impact projects.</li>
+                <li>Managed large-scale databases and delivered insights to executive leadership in fast-paced environments.</li>
+                <li>Optimized data collection and analysis workflows; mentored and grew high-performing teams.</li>
+              </ul>
+            </div>
+
+            <div class="role">
+              <div class="role-head">
+                <div>
+                  <p class="role-title">Data Research Analyst</p>
+                  <p class="role-org">Confidential · Data Research &amp; Analytics Department</p>
+                </div>
+                <div class="role-time">Aug 2016 – Feb 2019</div>
+              </div>
+            </div>
+
+          </div>
+        </section>
       </div>
 
-      <aside class="card">
-        <h2>Research Interests</h2>
-        <div class="chips" aria-label="Research interests">
-          <span class="chip">LLM robustness &amp; trustworthiness</span>
-          <span class="chip">Adversarial prompting</span>
-          <span class="chip">Prompt injection</span>
-          <span class="chip">LLM evaluation &amp; benchmarking</span>
-          <span class="chip">Over-generation &amp; misuse</span>
-          <span class="chip">Failure analysis</span>
-          <span class="chip">Inference-time steering</span>
-        </div>
+      <!-- SIDEBAR -->
+      <aside>
+        <section class="card" id="highlights">
+          <h2>At a Glance</h2>
+          <ul>
+            <li><strong>Focus:</strong> LLM safety, robustness, evaluation, and adversarial ML</li>
+            <li><strong>Experience:</strong> 7+ years across ML, NLP, and high-dimensional data analysis</li>
+            <li><strong>Location:</strong> Tel Aviv District, Israel</li>
+          </ul>
 
-        <h2 style="margin-top: 18px;">Projects</h2>
-        <ul>
-          <li>LLM adversarial detection and mitigation systems (DeepKeep)</li>
-          <li>Large-scale evaluation pipelines for safety, hallucination, and misuse</li>
-        </ul>
+          <div class="divider"></div>
 
-        <h2 style="margin-top: 18px;">Contact</h2>
-        <p class="muted" style="margin-top: 8px;">
-          Best way to reach me is via LinkedIn.
-        </p>
+          <h2>Education</h2>
+          <p style="margin: 8px 0 0;"><strong>The Hebrew University of Jerusalem</strong></p>
+          <p class="muted" style="margin: 4px 0 0;">B.Sc. Computer Science (Data Science Track)</p>
+          <p class="muted" style="margin: 4px 0 0;">B.Sc. Statistics and Data Science (Data Science Track)</p>
+          <p class="muted2" style="margin: 8px 0 0;">
+            Mentored by Prof. Matan Gavish and Prof. Asaf Weinstein
+          </p>
+
+          <div class="divider"></div>
+
+          <h2>Honors</h2>
+          <ul>
+            <li>Monday’s Excellence Scholarship (Top 30 CS &amp; Engineering students), 2023–2024</li>
+            <li>Board of Governors Honor (Volunteer contribution), 2024</li>
+            <li>Outstanding Admission Award (Top pre-admission score), 2021</li>
+          </ul>
+
+          <div class="divider"></div>
+
+          <h2>Skills</h2>
+          <div class="chips" aria-label="Skills">
+            <span class="chip">Adversarial ML</span>
+            <span class="chip">NLP</span>
+            <span class="chip">LLM evaluation</span>
+            <span class="chip">Safety &amp; security</span>
+            <span class="chip">High-dimensional data</span>
+            <span class="chip">Time-series modeling</span>
+          </div>
+
+          <div class="divider"></div>
+
+          <h2>Volunteer</h2>
+          <p style="margin: 8px 0 0;"><strong>Combatting Global Misinformation Project</strong></p>
+          <p class="muted" style="margin: 6px 0 0;">
+            Initiated and led a global volunteer project (Oct 2023 – Jan 2024) facilitating discussions with participants worldwide to promote accurate narratives and counter misinformation.
+          </p>
+
+          <div class="divider"></div>
+
+          <h2>Languages</h2>
+          <ul>
+            <li>English (Native / Bilingual)</li>
+            <li>Arabic (Full professional)</li>
+          </ul>
+
+          <div class="divider"></div>
+
+          <h2>Contact</h2>
+          <p class="muted" style="margin: 8px 0 0;">
+            <strong>Email:</strong> <a href="mailto:adishnaidman@gmail.com">adishnaidman@gmail.com</a><br/>
+            <span class="muted2">(+972) 52-567-5253</span><br/>
+            <span class="muted2">LinkedIn: <a href="https://www.linkedin.com/in/adi-shnaidman/">adi-shnaidman</a></span>
+          </p>
+        </section>
       </aside>
     </section>
+
+    <footer>
+      <span>© <span id="year"></span> Adi Shnaidman</span>
+      <span class="muted2">Last updated: <span id="lastUpdated"></span></span>
+    </footer>
   </main>
 
   <script>
-    // Simple "Last updated" stamp (client-side)
-    const el = document.getElementById("lastUpdated");
-    const d = new Date();
-    el.textContent = d.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "2-digit" });
+    // Footer timestamps
+    const now = new Date();
+    document.getElementById("year").textContent = now.getFullYear();
+    document.getElementById("lastUpdated").textContent =
+      now.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "2-digit" });
   </script>
 </body>
 </html>
