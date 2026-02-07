@@ -207,17 +207,29 @@ a.papertitle:hover{
       text-align: right;
     }
 
-    /* Mobile */
-    @media (max-width: 820px){
-      .intro-left, .intro-right{
-        display:block;
-        width:100%;
-      }
+/* Mobile */
+@media (max-width: 820px){
+  .intro-left, .intro-right{
+    display:block;
+    width:100%;
+  }
+
   .profile-img{
-    max-width: 240px; /* was 240px */
+    max-width: 120px;
     margin: 8px auto 0;
   }
+
+  .photo-note{ text-align:center; }
+
+  .paper-row td{
+    display:block;
+    width:100%;
+  }
+
+  /* On mobile you can keep thumbs full-width */
+  .thumb{ max-width: 100%; }
 }
+
 
       .photo-note{ text-align:center; }
       .paper-row td{ display:block; width:100%; }
