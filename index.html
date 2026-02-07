@@ -144,6 +144,12 @@
       display:inline-block;
       margin-bottom: 4px;
     }
+    .paper-click{
+    cursor: pointer;
+    }
+    .paper-click:hover{
+      background: #f8fafc;
+    }
     .paper-meta{
       font-size: 14px;
       color: var(--muted);
@@ -289,12 +295,15 @@
 
       <table class="paper-row" width="100%">
         <tr>
+          <tr class="paper-click" onclick="window.open('https://arxiv.org/abs/2512.24143','_blank','noopener');">
           <td width="25%">
             <!-- Optional thumbnail: upload to assets/activation_steering.jpg -->
             <img class="thumb" src="assets/activation_steering.jpg" alt="Activation Steering thumbnail (optional)">
           </td>
           <td width="75%">
-            <span class="papertitle">Activation Steering for Masked Diffusion Language Models</span><br>
+            <a class="papertitle" href="https://arxiv.org/abs/2512.24143" target="_blank" rel="noopener">
+            Activation Steering for Masked Diffusion Language Models
+          </a><br>
             <span class="paper-meta">arXiv · 2026 · Under review (ICLR ReALM–GEN workshop)</span><br>
             <span class="paper-meta">A. Shnaidman, E. Feiglin, O. Yaari, E. Mentel, A. Levi, R. Lapid</span>
             <div class="paper-links">
@@ -309,11 +318,14 @@
 
 <table class="paper-row" width="100%">
   <tr class="highlight">
+    <tr class="highlight paper-click" onclick="window.open('https://arxiv.org/abs/2601.08490','_blank','noopener');">
     <td width="25%">
       <img class="thumb" src="assets/benchoverflow.jpg" alt="BenchOverflow thumbnail (optional)">
     </td>
     <td width="75%">
-      <span class="papertitle">BenchOverflow: Measuring Overflow in Large Language Models via Plain-Text Prompts</span><br>
+      <a class="papertitle" href="https://arxiv.org/abs/2601.08490" target="_blank" rel="noopener">
+      BenchOverflow: Measuring Overflow in Large Language Models via Plain-Text Prompts
+      </a><br>
       <span class="paper-meta">TMLR · 2025 · Accepted to NVIDIA GTC 2026</span><br>
       <span class="paper-meta">
         <strong>Authors:</strong> Erin Feiglin, Nir Hutnik, Raz Lapid
