@@ -144,6 +144,14 @@
       display:inline-block;
       margin-bottom: 4px;
     }
+    a.papertitle{
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 700;
+  }
+a.papertitle:hover{
+  text-decoration: underline;
+}
     .paper-click{
     cursor: pointer;
     }
@@ -293,56 +301,43 @@
     <div class="section">
       <h2>Selected Publications &amp; Contributions</h2>
 
-      <table class="paper-row" width="100%">
-        <tr>
-          <tr class="paper-click" onclick="window.open('https://arxiv.org/abs/2512.24143','_blank','noopener');">
-          <td width="25%">
-            <!-- Optional thumbnail: upload to assets/activation_steering.jpg -->
-            <img class="thumb" src="assets/activation_steering.jpg" alt="Activation Steering thumbnail (optional)">
-          </td>
-          <td width="75%">
-            <a class="papertitle" href="https://arxiv.org/abs/2512.24143" target="_blank" rel="noopener">
-            Activation Steering for Masked Diffusion Language Models
-          </a><br>
-            <span class="paper-meta">arXiv · 2026 · Under review (ICLR ReALM–GEN workshop)</span><br>
-            <span class="paper-meta">A. Shnaidman, E. Feiglin, O. Yaari, E. Mentel, A. Levi, R. Lapid</span>
-            <div class="paper-links">
-                <a href="https://arxiv.org/abs/2512.24143" target="_blank" rel="noopener">arXiv</a>
-            </div>
-            <p class="muted">
-              Inference-time steering method for masked diffusion language models via activation-level signals, enabling controllable behavior without retraining.
-            </p>
-          </td>
-        </tr>
-      </table>
+<table class="paper-row" width="100%">
+  <tr class="paper-click" onclick="window.open('https://arxiv.org/abs/2512.24143','_blank','noopener');">
+    <td width="25%">
+      <img class="thumb" src="assets/activation_steering.jpg" alt="Activation Steering thumbnail (optional)">
+    </td>
+    <td width="75%">
+      <a class="papertitle" href="https://arxiv.org/abs/2512.24143" target="_blank" rel="noopener">
+        Activation Steering for Masked Diffusion Language Models
+      </a><br>
+      <span class="paper-meta">arXiv · 2026 · Under review (ICLR ReALM–GEN workshop)</span><br>
+      <span class="paper-meta">A. Shnaidman, E. Feiglin, O. Yaari, E. Mentel, A. Levi, R. Lapid</span>
+      <p class="muted">
+        Inference-time steering method for masked diffusion language models via activation-level signals, enabling controllable behavior without retraining.
+      </p>
+    </td>
+  </tr>
+</table>
 
 <table class="paper-row" width="100%">
-  <tr class="highlight">
-    <tr class="highlight paper-click" onclick="window.open('https://arxiv.org/abs/2601.08490','_blank','noopener');">
+  <tr class="highlight paper-click" onclick="window.open('https://arxiv.org/abs/2601.08490','_blank','noopener');">
     <td width="25%">
       <img class="thumb" src="assets/benchoverflow.jpg" alt="BenchOverflow thumbnail (optional)">
     </td>
     <td width="75%">
       <a class="papertitle" href="https://arxiv.org/abs/2601.08490" target="_blank" rel="noopener">
-      BenchOverflow: Measuring Overflow in Large Language Models via Plain-Text Prompts
+        BenchOverflow: Measuring Overflow in Large Language Models via Plain-Text Prompts
       </a><br>
       <span class="paper-meta">TMLR · 2025 · Accepted to NVIDIA GTC 2026</span><br>
-      <span class="paper-meta">
-        <strong>Authors:</strong> Erin Feiglin, Nir Hutnik, Raz Lapid
-      </span><br>
-      <span class="paper-meta">
-        <strong>Contribution:</strong> Acknowledged contributor
-      </span>
-
-      <div class="paper-links">
-        <a href="https://arxiv.org/abs/2601.08490" target="_blank" rel="noopener">arXiv</a>
-      </div>
+      <span class="paper-meta"><strong>Authors:</strong> Erin Feiglin, Nir Hutnik, Raz Lapid</span><br>
+      <span class="paper-meta"><strong>Contribution:</strong> Acknowledged contributor</span>
       <p class="muted">
         Studies a common failure mode where non-adversarial prompts trigger massive over-generation, driving up latency and cost unexpectedly.
       </p>
     </td>
   </tr>
 </table>
+
 
       <table class="paper-row" width="100%">
         <tr>
