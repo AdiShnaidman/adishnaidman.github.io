@@ -4,95 +4,237 @@
   <meta charset="UTF-8" />
   <title>Adi Shnaidman</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <style>
+    :root {
+      --bg: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --border: #e5e7eb;
+      --accent: #1a73e8;
+      --chip: #f1f5f9;
+      --shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 8px 24px rgba(15, 23, 42, 0.06);
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; }
+
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      max-width: 900px;
-      margin: 80px auto;
-      padding: 0 20px;
-      line-height: 1.6;
-      color: #111;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      line-height: 1.65;
     }
-    h1, h2 {
-      line-height: 1.25;
+
+    .container {
+      max-width: 860px;
+      margin: 64px auto;
+      padding: 0 22px 72px;
     }
-    h2 {
-      margin-top: 2.5em;
+
+    header {
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      background: #fff;
     }
-    ul {
-      padding-left: 1.2em;
+
+    h1 {
+      margin: 0 0 6px 0;
+      font-size: 2.2rem;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
     }
+
+    .headline {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .links {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
     a {
-      color: #0a66c2;
+      color: var(--accent);
       text-decoration: none;
+      font-weight: 600;
     }
-    a:hover {
-      text-decoration: underline;
+
+    a:hover { text-decoration: underline; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    h2 {
+      margin: 0 0 10px 0;
+      font-size: 1.15rem;
+      letter-spacing: -0.01em;
+    }
+
+    p { margin: 10px 0; }
+
+    .muted { color: var(--muted); }
+
+    ul {
+      margin: 10px 0 0;
+      padding-left: 1.1rem;
+    }
+
+    li { margin: 6px 0; }
+
+    .chips {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      display: inline-flex;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--chip);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.92rem;
+      white-space: nowrap;
+    }
+
+    .pub {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--border);
+    }
+
+    .pub:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .pub-title {
+      margin: 0;
+      font-weight: 700;
+    }
+
+    .pub-meta {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    footer {
+      margin-top: 22px;
+      padding-top: 14px;
+      color: var(--muted);
+      font-size: 0.95rem;
     }
   </style>
 </head>
 
 <body>
+  <main class="container">
+    <header>
+      <h1>Adi Shnaidman</h1>
+      <p class="headline">
+        Machine Learning Researcher · LLM Safety, Robustness, and Adversarial Machine Learning
+      </p>
 
-<h1>Adi Shnaidman</h1>
-<p>
-  <strong>Machine Learning Researcher</strong><br/>
-  LLM Safety, Robustness, and Adversarial Machine Learning
-</p>
+      <nav class="links" aria-label="Primary links">
+        <a href="https://github.com/AdiShnaidman">GitHub</a>
+        <a href="https://www.linkedin.com/in/adi-shnaidman/">LinkedIn</a>
+        <!-- Optional: add an email once you want it public
+        <a href="mailto:you@email.com">Email</a>
+        -->
+      </nav>
+    </header>
 
-<h2>About</h2>
-<p>
-  I am a Machine Learning Researcher focused on advancing the robustness,
-  safety, and reliability of large language models.
-  My work centers on understanding and mitigating adversarial behavior,
-  misuse, and unintended failure modes in real-world deployments.
-</p>
+    <section class="grid">
+      <div class="card">
+        <h2>About</h2>
+        <p>
+          I am a Machine Learning Researcher working on robustness, safety, and reliability in large language models,
+          with an emphasis on adversarial behavior, misuse, and real-world failure modes.
+        </p>
 
-<h2>Current Work</h2>
-<p>
-  At <strong>DeepKeep</strong>, I research and build real-time detection and
-  mitigation strategies to protect LLMs against adversarial prompts and
-  behavioral vulnerabilities. This includes large-scale stress testing,
-  evaluation framework design, and research-driven security solutions for
-  production systems.
-</p>
+        <h2 style="margin-top: 18px;">Current Work</h2>
+        <p>
+          At <strong>DeepKeep</strong>, I research and build real-time detection and mitigation strategies to protect LLMs
+          against adversarial prompts and behavioral vulnerabilities. This includes large-scale stress testing, evaluation
+          framework design, and research-driven security solutions for production systems.
+        </p>
 
-<h2>Research Interests</h2>
-<ul>
-  <li>LLM robustness, safety, and trustworthiness</li>
-  <li>Adversarial prompting and prompt injection</li>
-  <li>Evaluation and benchmarking of LLM behavior</li>
-  <li>Model over-generation, misuse, and failure analysis</li>
-  <li>Inference-time control and steering methods</li>
-</ul>
+        <h2 style="margin-top: 18px;">Selected Publications</h2>
 
-<h2>Selected Publications</h2>
-<ul>
-  <li>
-    <strong>Activation Steering for Masked Diffusion Language Models</strong><br/>
-    arXiv, 2026
-  </li>
-  <li>
-    <strong>BenchOverflow: Measuring Overflow in Large Language Models via Plain-Text Prompts</strong><br/>
-    NVIDIA GTC 2026 · Transactions on Machine Learning Research (TMLR)
-  </li>
-</ul>
+        <div class="pub">
+          <p class="pub-title">Activation Steering for Masked Diffusion Language Models</p>
+          <p class="pub-meta">arXiv · 2026</p>
+        </div>
 
-<h2>Projects</h2>
-<ul>
-  <li>
-    LLM adversarial detection and mitigation systems (DeepKeep)
-  </li>
-  <li>
-    Large-scale evaluation pipelines for safety, hallucination, and misuse
-  </li>
-</ul>
+        <div class="pub">
+          <p class="pub-title">BenchOverflow: Measuring Overflow in Large Language Models via Plain-Text Prompts</p>
+          <p class="pub-meta">NVIDIA GTC 2026 · Transactions on Machine Learning Research (TMLR)</p>
+        </div>
 
-<h2>Contact</h2>
-<p>
-  <a href="https://github.com/AdiShnaidman">GitHub</a> ·
-  <a href="https://www.linkedin.com/in/adi-shnaidman/">LinkedIn</a>
-</p>
+        <footer>
+          <span class="muted">Last updated:</span> <span id="lastUpdated"></span>
+        </footer>
+      </div>
 
+      <aside class="card">
+        <h2>Research Interests</h2>
+        <div class="chips" aria-label="Research interests">
+          <span class="chip">LLM robustness &amp; trustworthiness</span>
+          <span class="chip">Adversarial prompting</span>
+          <span class="chip">Prompt injection</span>
+          <span class="chip">LLM evaluation &amp; benchmarking</span>
+          <span class="chip">Over-generation &amp; misuse</span>
+          <span class="chip">Failure analysis</span>
+          <span class="chip">Inference-time steering</span>
+        </div>
+
+        <h2 style="margin-top: 18px;">Projects</h2>
+        <ul>
+          <li>LLM adversarial detection and mitigation systems (DeepKeep)</li>
+          <li>Large-scale evaluation pipelines for safety, hallucination, and misuse</li>
+        </ul>
+
+        <h2 style="margin-top: 18px;">Contact</h2>
+        <p class="muted" style="margin-top: 8px;">
+          Best way to reach me is via LinkedIn.
+        </p>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    // Simple "Last updated" stamp (client-side)
+    const el = document.getElementById("lastUpdated");
+    const d = new Date();
+    el.textContent = d.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "2-digit" });
+  </script>
 </body>
 </html>
