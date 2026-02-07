@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
   <title>Adi Shnaidman</title>
 
   <meta name="author" content="Adi Shnaidman">
@@ -14,7 +13,6 @@
   <meta property="og:title" content="Adi Shnaidman">
   <meta property="og:description" content="Machine Learning Researcher working on LLM safety, robustness, adversarial ML, and evaluation.">
   <meta property="og:type" content="website">
-  <!-- Optional once you add an image: <meta property="og:image" content="https://adishnaidman.github.io/assets/preview.jpg"> -->
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- Font -->
@@ -22,12 +20,11 @@
 
   <style>
     :root{
-      --accent:#2563eb;      /* link color */
-      --nav:#0ea5e9;         /* navbar */
-      --text:#111827;        /* body text */
-      --muted:#4b5563;       /* muted text */
-      --border:#e5e7eb;      /* separators */
-      --highlight:#fff7cc;   /* highlight rows */
+      --accent:#2563eb;
+      --text:#111827;
+      --muted:#4b5563;
+      --border:#e5e7eb;
+      --highlight:#fff7cc;
     }
 
     html, body { margin:0; padding:0; }
@@ -66,14 +63,15 @@
       color:#0b7285;
     }
 
-    /* Page wrappers (Jon Barron-style tables, but with modern spacing) */
+    /* Wrapper */
     .wrap{
       width:100%;
       max-width:860px;
       margin: 0 auto;
       padding: 0 16px;
     }
-    table{ border-collapse:separate; border-spacing:0; }
+
+    table{ border-collapse:separate; border-spacing:0; width:100%; }
     a{ color: var(--accent); text-decoration:none; font-weight: 500; }
     a:hover{ text-decoration:underline; }
 
@@ -82,9 +80,7 @@
       margin: 0 0 10px 0;
       font-weight: 700;
       letter-spacing: -0.02em;
-    }
-    h1.name{
-    text-align: center;
+      text-align: center; /* centered across full table width */
     }
 
     h2{
@@ -93,27 +89,21 @@
       font-weight: 700;
       letter-spacing: -0.01em;
     }
+
     p{ margin: 10px 0; }
     .muted{ color: var(--muted); }
 
     /* Profile photo */
-.profile-img{
-  width: 100%;
-  max-width: 160px;   /* was 320px */
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  box-shadow: 0 6px 24px rgba(17,24,39,.08);
-  display: block;
-  margin-left: auto;
-}
-
-    .photo-note{
-      font-size: 13px;
-      color: var(--muted);
-      margin-top: 8px;
-      text-align: right;
+    .profile-img{
+      width: 100%;
+      max-width: 160px;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      box-shadow: 0 6px 24px rgba(17,24,39,.08);
+      display: block;
+      margin-left: auto;
     }
 
     /* Section separator */
@@ -127,9 +117,6 @@
     }
 
     /* Paper/project rows */
-    .paper-row{
-      width:100%;
-    }
     .paper-row td{
       padding: 18px 14px;
       vertical-align: middle;
@@ -143,59 +130,45 @@
       box-shadow: 0 6px 22px rgba(17,24,39,.06);
       display:block;
     }
-    .papertitle{
-      font-weight: 700;
-      font-size: 17px;
-      display:inline-block;
-      margin-bottom: 4px;
-    }
-    a.papertitle{
-    color: var(--text);
-    text-decoration: none;
-    font-weight: 700;
-  }
-a.papertitle:hover{
-  text-decoration: underline;
-}
-    .paper-click{
-    cursor: pointer;
-    }
-    .paper-click:hover{
-      background: #f8fafc;
-    }
     .paper-meta{
       font-size: 14px;
       color: var(--muted);
       margin-top: 3px;
     }
-    .paper-links{
-      font-size: 14px;
-      margin-top: 6px;
+    a.papertitle{
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 17px;
+      display:inline-block;
+      margin-bottom: 4px;
     }
+    a.papertitle:hover{ text-decoration: underline; }
+    .paper-click{ cursor:pointer; }
+    .paper-click:hover{ background:#f8fafc; }
 
-    .highlight{
-      background: var(--highlight);
-    }
+    .highlight{ background: var(--highlight); }
 
-    /* Two-column intro */
+    /* Intro layout (name row is FULL width; bio+photo below) */
     .intro-table{
       width:100%;
       border:0;
       margin: 22px auto 6px;
     }
-.intro-left{
-  width: 76%;          /* was 70% */
-  padding-right: 6px;  /* was 16px */
-}
-
-.intro-right{
-  width: 24%;          /* was 30% */
-  padding-left: 6px;   /* was 16px */
-}
-
-.intro-left { text-align: left; }
-.intro-left .muted { text-align: left; }
-
+    .intro-name-row td{
+      padding: 0 16px 6px;
+    }
+    .intro-left{
+      width: 78%;
+      padding-right: 0px;   /* tighter toward photo */
+      vertical-align: top;
+      text-align: left;
+    }
+    .intro-right{
+      width: 22%;
+      padding-left: 0px;
+      vertical-align: top;
+    }
 
     /* Lists */
     ul{
@@ -214,48 +187,46 @@ a.papertitle:hover{
       text-align: right;
     }
 
-/* Mobile */
-@media (max-width: 820px){
-  .intro-left, .intro-right{
-    display:block;
-    width:100%;
-  }
-
-  .profile-img{
-    max-width: 120px;
-    margin: 8px auto 0;
-  }
-
-  .photo-note{ text-align:center; }
-
-  .paper-row td{
-    display:block;
-    width:100%;
-  }
-
-  /* On mobile you can keep thumbs full-width */
-  .thumb{ max-width: 100%; }
-}
-      </style>
+    /* Mobile */
+    @media (max-width: 820px){
+      .intro-left, .intro-right{
+        display:block;
+        width:100%;
+      }
+      .profile-img{
+        max-width: 120px;
+        margin: 8px auto 0;
+      }
+      .paper-row td{
+        display:block;
+        width:100%;
+      }
+      .thumb{ max-width: 100%; }
+    }
+  </style>
 </head>
-  
+
 <body>
   <!-- Navigation Bar -->
   <nav>
     <ul>
       <li><a href="index.html">Main</a></li>
-      <!-- Optional: create a second page later -->
-      <!-- <li><a href="blogs.html">Blogs</a></li> -->
     </ul>
   </nav>
 
   <div class="wrap">
     <!-- Intro -->
     <table class="intro-table">
+      <!-- FULL-WIDTH NAME -->
+      <tr class="intro-name-row">
+        <td colspan="2">
+          <h1 class="name">Adi Shnaidman</h1>
+        </td>
+      </tr>
+
+      <!-- BIO + PHOTO -->
       <tr>
         <td class="intro-left">
-        <h1 class="name">Adi Shnaidman</h1>
-
           <p>
             I’m a <strong>Machine Learning Researcher</strong> focused on advancing the <strong>robustness, safety, and reliability</strong> of large language models.
             At <strong>DeepKeep</strong>, I research and build real-time detection and mitigation strategies to protect LLMs against adversarial prompts, misuse, and unintended behaviors.
@@ -272,21 +243,12 @@ a.papertitle:hover{
 
           <p style="margin-top: 14px;">
             <a href="mailto:adishnaidman@gmail.com">Email</a> &nbsp;/&nbsp;
-            <!-- Add your Scholar link when ready -->
-            <!-- <a href="https://scholar.google.com/citations?user=YOUR_ID">Scholar</a> &nbsp;/&nbsp; -->
             <a href="https://github.com/AdiShnaidman">GitHub</a> &nbsp;/&nbsp;
             <a href="https://www.linkedin.com/in/adi-shnaidman/">LinkedIn</a>
           </p>
         </td>
 
         <td class="intro-right">
-          <!-- PROFILE PHOTO -->
-          <!--
-            How to add a picture:
-            1) In your repo, create a folder called "assets"
-            2) Upload a file named: assets/profile.jpg  (or .png)
-            3) Replace the placeholder src below with: assets/profile.jpg
-          -->
           <a href="assets/profile.jpg">
             <img class="profile-img" src="assets/profile.jpg" alt="Adi Shnaidman">
           </a>
@@ -314,83 +276,64 @@ a.papertitle:hover{
     <div class="section">
       <h2>Selected Publications &amp; Contributions</h2>
 
-<table class="paper-row" width="100%">
-  <tr class="paper-click" onclick="window.open('https://arxiv.org/abs/2512.24143','_blank','noopener');">
-    <td width="25%">
-      <img class="thumb" src="assets/activation_steering.jpg" alt="Activation Steering thumbnail (optional)">
-    </td>
-    <td width="75%">
-      <a class="papertitle" href="https://arxiv.org/abs/2512.24143" target="_blank" rel="noopener" onclick="event.stopPropagation();">
-        Activation Steering for Masked Diffusion Language Models
-      </a><br>
-      <span class="paper-meta">arXiv · 2026 · Under review (ICLR ReALM–GEN workshop)</span><br>
-      <span class="paper-meta">A. Shnaidman, E. Feiglin, O. Yaari, E. Mentel, A. Levi, R. Lapid</span>
-      <p class="muted">Inference-time steering method for masked diffusion language models via activation-level signals, enabling controllable behavior without retraining.</p>
-    </td>
-  </tr>
-</table>
-
-<table class="paper-row" width="100%">
-  <tr class="paper-click" onclick="window.open('https://arxiv.org/abs/2601.08490','_blank','noopener');">
-    <td width="25%">
-      <img class="thumb" src="assets/benchoverflow.jpg" alt="BenchOverflow thumbnail (optional)">
-    </td>
-    <td width="75%">
-      <a class="papertitle" href="https://arxiv.org/abs/2601.08490" target="_blank" rel="noopener" onclick="event.stopPropagation();">
-        BenchOverflow: Measuring Overflow in Large Language Models via Plain-Text Prompts
-      </a><br>
-      <span class="paper-meta">TMLR · 2025 · Accepted to NVIDIA GTC 2026</span><br>
-      <span class="paper-meta"><strong>Authors:</strong> Erin Feiglin, Nir Hutnik, Raz Lapid</span><br>
-      <span class="paper-meta"><strong>Contribution:</strong> Acknowledged contributor</span>
-      <p class="muted">Studies a common failure mode where non-adversarial prompts trigger massive over-generation, driving up latency and cost unexpectedly.</p>
-    </td>
-  </tr>
-</table>
-
-
-      <table class="paper-row" width="100%">
-        <tr>
+      <table class="paper-row">
+        <tr class="paper-click" onclick="window.open('https://arxiv.org/abs/2512.24143','_blank','noopener');">
           <td width="25%">
-            <!-- Optional thumbnail: upload to assets/brain_tradeoffs.jpg -->
-            <img class="thumb" src="assets/brain_tradeoffs.jpg" alt="Structure–Function Tradeoffs thumbnail (optional)">
+            <img class="thumb" src="assets/activation_steering.jpg" alt="Activation Steering thumbnail (optional)">
           </td>
           <td width="75%">
-            <span class="papertitle">Structure–Function Tradeoffs in the Human Brain</span><br>
-            <span class="paper-meta">Unpublished · 2024</span><br>
-            <span class="paper-meta">A. Shnaidman, A. Meisel, O. Ventura</span>
-            <p class="muted">
-              Explores structural/functional connectivity trade-offs using high-dimensional neuroimaging data and trade-off characterization methods.
-            </p>
+            <a class="papertitle" href="https://arxiv.org/abs/2512.24143" target="_blank" rel="noopener" onclick="event.stopPropagation();">
+              Activation Steering for Masked Diffusion Language Models
+            </a><br>
+            <span class="paper-meta">arXiv · 2026 · Under review (ICLR ReALM–GEN workshop)</span><br>
+            <span class="paper-meta">A. Shnaidman, E. Feiglin, O. Yaari, E. Mentel, A. Levi, R. Lapid</span>
+            <p class="muted">Inference-time steering method for masked diffusion language models via activation-level signals, enabling controllable behavior without retraining.</p>
           </td>
         </tr>
       </table>
 
-      <p class="muted" style="margin-top: 10px;">
-      </p>
+      <table class="paper-row">
+        <tr class="paper-click" onclick="window.open('https://arxiv.org/abs/2601.08490','_blank','noopener');">
+          <td width="25%">
+            <img class="thumb" src="assets/benchoverflow.jpg" alt="BenchOverflow thumbnail (optional)">
+          </td>
+          <td width="75%">
+            <a class="papertitle" href="https://arxiv.org/abs/2601.08490" target="_blank" rel="noopener" onclick="event.stopPropagation();">
+              BenchOverflow: Measuring Overflow in Large Language Models via Plain-Text Prompts
+            </a><br>
+            <span class="paper-meta">TMLR · 2025 · Accepted to NVIDIA GTC 2026</span><br>
+            <span class="paper-meta"><strong>Authors:</strong> Erin Feiglin, Nir Hutnik, Raz Lapid</span><br>
+            <span class="paper-meta"><strong>Contribution:</strong> Acknowledged contributor</span>
+            <p class="muted">Studies a common failure mode where non-adversarial prompts trigger massive over-generation, driving up latency and cost unexpectedly.</p>
+          </td>
+        </tr>
+      </table>
+
+      <table class="paper-row">
+        <tr>
+          <td width="25%">
+            <img class="thumb" src="assets/brain_tradeoffs.jpg" alt="Structure–Function Tradeoffs thumbnail (optional)">
+          </td>
+          <td width="75%">
+            <span style="font-weight:700; font-size:17px; display:inline-block; margin-bottom:4px;">Structure–Function Tradeoffs in the Human Brain</span><br>
+            <span class="paper-meta">Unpublished · 2024</span><br>
+            <span class="paper-meta">A. Shnaidman, A. Meisel, O. Ventura</span>
+            <p class="muted">Explores structural/functional connectivity trade-offs using high-dimensional neuroimaging data and trade-off characterization methods.</p>
+          </td>
+        </tr>
+      </table>
     </div>
 
     <!-- Experience -->
     <div class="section">
       <h2>Professional Experience</h2>
       <ul>
-        <li>
-          <strong>Machine Learning Researcher</strong>, DeepKeep (Apr 2025 – Present) — LLM safety/robustness research, large-scale evaluation, and real-time detection/mitigation.
-        </li>
-        <li>
-          <strong>Data Scientist</strong>, ComDePri Lab (Jun 2024 – May 2025) — modeling and reconstruction of high-frequency human movement time-series; predictive modeling and data mining.
-        </li>
-        <li>
-          <strong>Capstone Researcher &amp; Data Scientist</strong>, ComDePri Lab (Oct 2023 – Oct 2024) — Pareto trade-offs in brain structure/function; dimensionality reduction and archetypal analysis.
-        </li>
-        <li>
-          <strong>Principal Research &amp; Data Lead</strong>, Confidential (Dec 2020 – Oct 2021) — domain expert leadership, strategic recommendations, analysis standards.
-        </li>
-        <li>
-          <strong>Head of Intelligence Research &amp; Data Analysis Teams</strong>, Confidential (Feb 2019 – Dec 2020) — led analytics teams; executive decision support; large-scale DB insights.
-        </li>
-        <li>
-          <strong>Data Research Analyst</strong>, Confidential (Aug 2016 – Feb 2019)
-        </li>
+        <li><strong>Machine Learning Researcher</strong>, DeepKeep (Apr 2025 – Present) — LLM safety/robustness research, large-scale evaluation, and real-time detection/mitigation.</li>
+        <li><strong>Data Scientist</strong>, ComDePri Lab (Jun 2024 – May 2025) — modeling and reconstruction of high-frequency human movement time-series; predictive modeling and data mining.</li>
+        <li><strong>Capstone Researcher &amp; Data Scientist</strong>, ComDePri Lab (Oct 2023 – Oct 2024) — Pareto trade-offs in brain structure/function; dimensionality reduction and archetypal analysis.</li>
+        <li><strong>Principal Research &amp; Data Lead</strong>, Confidential (Dec 2020 – Oct 2021) — domain expert leadership, strategic recommendations, analysis standards.</li>
+        <li><strong>Head of Intelligence Research &amp; Data Analysis Teams</strong>, Confidential (Feb 2019 – Dec 2020) — led analytics teams; executive decision support; large-scale DB insights.</li>
+        <li><strong>Data Research Analyst</strong>, Confidential (Aug 2016 – Feb 2019)</li>
       </ul>
     </div>
 
@@ -404,7 +347,7 @@ a.papertitle:hover{
       </p>
     </div>
 
-    <!-- Honors / Volunteer / Languages -->
+    <!-- Volunteer -->
     <div class="section">
       <h2>Volunteer</h2>
       <p>
