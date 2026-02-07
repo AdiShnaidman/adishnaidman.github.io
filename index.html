@@ -17,6 +17,96 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
   <style>
+/* Timeline */
+.timeline{ 
+  margin: 10px 0 0;
+  padding: 0;
+  padding-left: 0;        /* overrides global ul padding */
+  list-style: none;
+  position: relative;
+}
+
+/* vertical line */
+.timeline::before{
+  content:"";
+  position:absolute;
+  left: 120px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+
+.timeline li{
+  display: grid;
+  grid-template-columns: 105px 1fr;
+  column-gap: 28px;
+  align-items: start;
+  padding: 12px 0;
+  position: relative;
+  margin: 0;              /* overrides your global li margin */
+}
+
+.timeline .when{
+  font-size: 13px;
+  color: var(--muted);
+  text-align: right;
+  line-height: 1.4;
+  padding-top: 2px;
+}
+
+/* dot */
+.timeline li::before{
+  content:"";
+  position:absolute;
+  left: 120px;
+  top: 18px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--accent);
+  transform: translateX(-50%);
+}
+
+.timeline .what{ padding-left: 6px; }
+.timeline .role{ font-weight: 700; }
+.timeline .org{ font-weight: 500; }
+
+.timeline .desc{
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* Mobile */
+@media (max-width: 820px){
+  .timeline::before{ left: 10px; }
+  .timeline li{
+    grid-template-columns: 1fr;
+    padding-left: 26px;
+  }
+  .timeline .when{
+    text-align: left;
+    margin-bottom: 4px;
+  }
+  .timeline li::before{ left: 10px; }
+}
+
+  /* Mobile: stack */
+  @media (max-width: 820px){
+    .timeline::before{ left: 10px; }
+    .timeline li{
+      grid-template-columns: 1fr;
+      padding-left: 26px;
+    }
+    .timeline .when{
+      text-align: left;
+      margin-bottom: 4px;
+    }
+    .timeline li::before{ left: 10px; }
+  }
+
     :root{
       --accent:#2563eb;
       --text:#111827;
@@ -286,8 +376,9 @@
       </table>
     </div>
 
+      
     <!-- Experience -->
-    <div class="section">
+    <!-- <div class="section">
       <h2>Professional Experience</h2>
       <ul>
         <li><strong>Machine Learning Researcher</strong>, DeepKeep (Apr 2025 – Present) — LLM safety/robustness research, large-scale evaluation, and real-time detection/mitigation.</li>
@@ -297,7 +388,60 @@
         <li><strong>Head of Intelligence Research &amp; Data Analysis Teams</strong>, Confidential (Feb 2019 – Dec 2020) — led analytics teams; executive decision support; large-scale DB insights.</li>
         <li><strong>Data Research Analyst</strong>, Confidential (Aug 2016 – Feb 2019)</li>
       </ul>
-    </div>
+    </div> -->
+    <div class="section">
+  <h2>Professional Experience</h2>
+
+  <ul class="timeline">
+    <li>
+      <div class="when">Apr 2025<br>– Present</div>
+      <div class="what">
+        <div><span class="role">Machine Learning Researcher</span>, <span class="org">DeepKeep</span></div>
+        <div class="desc">LLM safety/robustness research, large-scale evaluation, and real-time detection/mitigation.</div>
+      </div>
+    </li>
+
+    <li>
+      <div class="when">Jun 2024<br>– May 2025</div>
+      <div class="what">
+        <div><span class="role">Data Scientist</span>, <span class="org">ComDePri Lab</span></div>
+        <div class="desc">Modeling and reconstruction of high-frequency human movement time-series; predictive modeling and data mining.</div>
+      </div>
+    </li>
+
+    <li>
+      <div class="when">Oct 2023<br>– Oct 2024</div>
+      <div class="what">
+        <div><span class="role">Capstone Researcher &amp; Data Scientist</span>, <span class="org">ComDePri Lab</span></div>
+        <div class="desc">Pareto trade-offs in brain structure/function; dimensionality reduction and archetypal analysis.</div>
+      </div>
+    </li>
+
+    <li>
+      <div class="when">Dec 2020<br>– Oct 2021</div>
+      <div class="what">
+        <div><span class="role">Principal Research &amp; Data Lead</span>, <span class="org">Confidential</span></div>
+        <div class="desc">Domain expert leadership, strategic recommendations, analysis standards.</div>
+      </div>
+    </li>
+
+    <li>
+      <div class="when">Feb 2019<br>– Dec 2020</div>
+      <div class="what">
+        <div><span class="role">Head of Intelligence Research &amp; Data Analysis Teams</span>, <span class="org">Confidential</span></div>
+        <div class="desc">Led analytics teams; executive decision support; large-scale DB insights.</div>
+      </div>
+    </li>
+
+    <li>
+      <div class="when">Aug 2016<br>– Feb 2019</div>
+      <div class="what">
+        <div><span class="role">Data Research Analyst</span>, <span class="org">Confidential</span></div>
+      </div>
+    </li>
+  </ul>
+</div>
+
 
     <!-- Education -->
     <!-- <div class="section">
