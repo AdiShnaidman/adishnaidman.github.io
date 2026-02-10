@@ -108,19 +108,38 @@
     .timeline li::before{ left: 10px; }
   }
 
-    :root{
+    /* :root{
       --accent:#2563eb;
       --text:#111827;
       --muted:#4b5563;
       --border:#e5e7eb;
       --highlight:#fff7cc;
-    }
+    } */
+:root{
+  --accent:#2563eb;
+  --text:#111827;
+  --muted:#4b5563;
+
+  /* softer neutrals */
+  --border: rgba(17,24,39,.10);
+  --highlight:#fff7cc;
+
+  /* new */
+  --page: #f6f7fb;     /* very light tint */
+  --card: #ffffff;     /* card surface */
+}
 
     html, body { margin:0; padding:0; }
-    body{
+    /* body{
       font-family: "Roboto", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       color: var(--text);
       background: #fff;
+      line-height: 1.55;
+    } */
+    body{
+      font-family: "Roboto", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, #eef2ff 0%, var(--page) 240px, var(--page) 100%);
       line-height: 1.55;
     }
 
@@ -164,14 +183,26 @@
         margin-left: auto;
       }
 
-    .section{
+    /* .section{
       padding: 14px 0;
       border-top: 1px solid var(--border);
     }
     .section:first-of-type{
       border-top: none;
       padding-top: 0;
-    }
+    } */
+.section{
+  padding: 18px 18px;
+  margin: 14px 0;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--card);
+  box-shadow: 0 10px 30px rgba(17,24,39,.06);
+}
+
+.section:first-of-type{
+  margin-top: 0;
+}
 
     .paper-row td{
       padding: 18px 14px;
