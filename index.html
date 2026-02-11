@@ -246,17 +246,16 @@
     .intro-name-row td{
       padding: 0 16px 6px;
     }
-    .intro-left{
-      width: 78%;
-      padding-right: 0px;
-      vertical-align: top;
-      text-align: left;
-    }
-    .intro-right{
-      width: 22%;
-      padding-left: 0px;
-      vertical-align: top;
-    }
+.intro-left{
+  width: auto;          /* instead of 78% */
+  padding-right: 24px;  /* optional spacing */
+}
+
+.intro-right{
+  width: 190px;         /* fixed column instead of 22% */
+  padding-left: 0;
+  vertical-align: top;
+}
 
     ul{
       margin: 8px 0 0;
@@ -278,10 +277,11 @@
         display:block;
         width:100%;
       }
-      .profile-img{
-        max-width: 120px;
-        margin: 8px auto 0;
-      }
+.profile-img{
+  width: 140px;         /* slightly smaller */
+  height: 140px;
+  margin-left: auto;
+}
       .paper-row td{
         display:block;
         width:100%;
