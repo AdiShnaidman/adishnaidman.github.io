@@ -136,29 +136,61 @@
       box-shadow:0 14px 30px rgba(37,99,235,.30);
     }
 
-.note-box{
-  margin-top:26px;
-  padding-top:22px;
-  border-top:1px solid var(--border);
-}
+    .note-box{
+      margin-top:24px;
+      padding-top:20px;
+      border-top:1px solid var(--border);
+    }
 
-.note-box h3{
-  margin:0 0 6px;
-  font-size:18px;
-  letter-spacing:-0.01em;
-}
+    .note-box summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 14px;
+      border:1px solid var(--border);
+      border-radius:14px;
+      background:white;
+      color:var(--text);
+      font-size:15px;
+      font-weight:700;
+      box-shadow:0 6px 18px rgba(17,24,39,.04);
+    }
 
-.note-intro{
-  font-size:14px;
-  margin-bottom:14px;
-}
+    .note-box summary::-webkit-details-marker{
+      display:none;
+    }
 
-.tally-frame{
-  width:100%;
-  border:0;
-  border-radius:14px;
-  background:transparent;
-}
+    .note-box summary::after{
+      content:"＋";
+      color:var(--accent);
+      font-size:18px;
+      line-height:1;
+      transition:transform .15s ease;
+    }
+
+    .note-box[open] summary::after{
+      content:"−";
+    }
+
+    .note-content{
+      margin-top:16px;
+    }
+
+    .note-intro{
+      font-size:14px;
+      margin:0 0 12px;
+      color:var(--muted);
+    }
+
+    .tally-frame{
+      width:100%;
+      border:0;
+      border-radius:14px;
+      background:transparent;
+    }
 
     .arrow{
       font-size:18px;
@@ -218,39 +250,45 @@
         I deeply appreciate any support from people who believe in this path and would like to help make it possible.
       </p>
 
-<div class="support-box">
-  <h2>Contribute via PayPal</h2>
+      <div class="support-box">
+        <h2>Contribute via PayPal</h2>
 
-  <p class="muted">
-    Contributions help ease the financial burden of graduate studies and support my ability to stay focused on academic and research growth.
-  </p>
+        <p class="muted">
+          Contributions help ease the financial burden of graduate studies and support my ability to stay focused on academic and research growth.
+        </p>
 
-  <a
-    class="paypal-button"
-    href="https://paypal.me/AdiShnaidman"
-    target="_blank"
-    rel="noopener"
-  >
-    <span>Support via PayPal</span>
-    <span class="arrow">→</span>
-  </a>
+        <a
+          class="paypal-button"
+          href="https://paypal.me/AdiShnaidman"
+          target="_blank"
+          rel="noopener"
+        >
+          <span>Support via PayPal</span>
+          <span class="arrow">→</span>
+        </a>
 
-  <div class="note-box">
-    <h3>Leave a note</h3>
+        <details class="note-box">
+          <summary>Leave a note</summary>
 
-    <iframe
-      class="tally-frame"
-      src="https://tally.so/embed/2EljMg?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
-      width="100%"
-      height="420"
-      frameborder="0"
-      marginheight="0"
-      marginwidth="0"
-      title="Leave a note"
-    ></iframe>
-  </div>
-</div>
-      
+          <div class="note-content">
+            <p class="note-intro">
+              If you would like to share a note, context, or a message of support, you can leave it here.
+            </p>
+
+            <iframe
+              class="tally-frame"
+              src="https://tally.so/embed/2EljMg?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+              width="100%"
+              height="420"
+              frameborder="0"
+              marginheight="0"
+              marginwidth="0"
+              title="Leave a note"
+            ></iframe>
+          </div>
+        </details>
+      </div>
+
       <p class="contact">
         For larger contributions, questions, or research-related support, feel free to contact me at
         <a href="mailto:adishnaidman@gmail.com">adishnaidman@gmail.com</a>.
