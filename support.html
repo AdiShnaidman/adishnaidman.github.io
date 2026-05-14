@@ -158,7 +158,24 @@
       font-weight:700;
       box-shadow:0 6px 18px rgba(17,24,39,.04);
     }
+.note-summary-copy{
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+}
 
+.note-summary-title{
+  font-size:15px;
+  font-weight:700;
+  color:var(--text);
+}
+
+.note-summary-subtext{
+  font-size:13px;
+  font-weight:400;
+  color:var(--muted);
+  line-height:1.35;
+}
     .note-box summary::-webkit-details-marker{
       display:none;
     }
@@ -268,24 +285,28 @@
         </a>
 
         <details class="note-box">
-          <summary>Leave a note</summary>
+  <summary>
+    <span class="note-summary-copy">
+      <span class="note-summary-title">Leave a note</span>
+      <span class="note-summary-subtext">
+        If you would like to share a note, context, or a message of support, you can leave it below.
+      </span>
+    </span>
+  </summary>
 
-          <div class="note-content">
-
-            <iframe
-              class="tally-frame"
-              src="https://tally.so/embed/2EljMg?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
-              width="100%"
-              height="420"
-              frameborder="0"
-              marginheight="0"
-              marginwidth="0"
-              title="Leave a note"
-            ></iframe>
-          </div>
-        </details>
-      </div>
-
+  <div class="note-content">
+    <iframe
+      class="tally-frame"
+      src="https://tally.so/embed/2EljMg?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+      width="100%"
+      height="420"
+      frameborder="0"
+      marginheight="0"
+      marginwidth="0"
+      title="Leave a note"
+    ></iframe>
+  </div>
+</details>
       <p class="contact">
         For larger contributions, questions, or research-related support, feel free to contact me at
         <a href="mailto:adishnaidman@gmail.com">adishnaidman@gmail.com</a>.
