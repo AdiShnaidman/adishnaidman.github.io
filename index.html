@@ -71,9 +71,35 @@
 }
 
 .timeline .what{ padding-left: 6px; }
-.timeline .role{ font-weight: 700; }
-.timeline .org{ font-weight: 500; }
 
+.timeline .role{
+  font-weight: 700;
+}
+
+.timeline .org{
+  font-weight: 500;
+}
+
+.timeline .org-header{
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.timeline .subrole{
+  padding-left: 12px;
+  border-left: 2px solid var(--border);
+  margin-bottom: 12px;
+}
+
+.timeline .subrole:last-child{
+  margin-bottom: 0;
+}
+
+.timeline .role-line{
+  font-size: 15px;
+}
 .timeline .desc{
   margin-top: 4px;
   color: var(--muted);
@@ -499,18 +525,18 @@
   <div class="when">Oct 2023<br>– May 2025</div>
 
   <div class="what">
-    <div class="org" style="font-weight:700; margin-bottom:10px;">ComDePri Lab</div>
+    <div class="org-header">ComDePri Lab</div>
 
-    <div style="margin-bottom: 10px;">
-      <div>
+    <div class="subrole">
+      <div class="role-line">
         <span class="role">Data Scientist</span>
         <span class="muted">(Jun 2024 – May 2025)</span>
       </div>
       <div class="desc">Modeling and reconstruction of high-frequency human movement time-series; predictive modeling and data mining.</div>
     </div>
 
-    <div>
-      <div>
+    <div class="subrole">
+      <div class="role-line">
         <span class="role">Capstone Researcher &amp; Data Scientist</span>
         <span class="muted">(Oct 2023 – Oct 2024)</span>
       </div>
@@ -519,38 +545,36 @@
   </div>
 </li>
 
-
 <li>
   <div class="when">Aug 2016<br>– Oct 2021</div>
 
   <div class="what">
-    <div class="org" style="font-weight:700; margin-bottom:10px;">Large Enterprise Organization</div>
+    <div class="org-header">Large Enterprise Organization</div>
 
-    <div style="margin-bottom: 10px;">
-      <div>
+    <div class="subrole">
+      <div class="role-line">
         <span class="role">Principal Research &amp; Data Lead</span>
         <span class="muted">(Dec 2020 – Oct 2021)</span>
       </div>
       <div class="desc">Domain expert leadership, strategic recommendations, analysis standards.</div>
     </div>
 
-    <div style="margin-bottom: 10px;">
-      <div>
+    <div class="subrole">
+      <div class="role-line">
         <span class="role">Head of Research &amp; Analytics</span>
         <span class="muted">(Feb 2019 – Dec 2020)</span>
       </div>
       <div class="desc">Led analytics teams; executive decision support; large-scale DB insights.</div>
     </div>
 
-    <div>
-      <div>
+    <div class="subrole">
+      <div class="role-line">
         <span class="role">Data Research Analyst</span>
         <span class="muted">(Aug 2016 – Feb 2019)</span>
       </div>
     </div>
   </div>
-</li>
-    
+</li>    
   </ul>
 </div>
 
