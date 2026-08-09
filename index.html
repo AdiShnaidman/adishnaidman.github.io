@@ -255,6 +255,26 @@
       color: var(--muted);
       margin-top: 3px;
     }
+    .education-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.education-item + .education-item {
+  margin-top: 20px;
+}
+
+.education-logo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.education-info {
+  min-width: 0;
+}
 
     a.papertitle{
       color: var(--text);
@@ -600,30 +620,50 @@
 <div class="section">
   <h2>Education</h2>
 
-  <div style="margin-bottom: 16px;">
-    <strong>University of Pennsylvania</strong>
-    <div class="paper-meta">
-      Master of Science in Engineering (MSE) · Computer and Information Science
-    </div>
-    <div class="muted" style="margin-top: 6px;">
-      2026 – 2028
+  <div class="education-item">
+    <img
+      class="education-logo"
+      src="assets/penn.jpg"
+      alt="University of Pennsylvania logo"
+    >
+
+    <div class="education-info">
+      <strong>University of Pennsylvania</strong>
+
+      <div class="paper-meta">
+        Master of Science in Engineering (MSE) · Computer and Information Science
+      </div>
+
+      <div class="muted" style="margin-top: 6px;">
+        2026 – 2028
+      </div>
     </div>
   </div>
 
-  <div>
-    <strong>The Hebrew University of Jerusalem</strong>
-    <div class="paper-meta">
-      Bachelor of Science (B.Sc.) · Computer Science and Statistics · Data Science Track
-    </div>
 
-    <div class="muted" style="margin-top: 6px;">
-      Mentored by Prof. Matan Gavish, School of Computer Science and Engineering, and
-      Prof. Asaf Weinstein, Department of Statistics and Data Science.
+  <div class="education-item">
+    <img
+      class="education-logo"
+      src="assets/huji.jpg"
+      alt="The Hebrew University of Jerusalem logo"
+    >
+
+    <div class="education-info">
+      <strong>The Hebrew University of Jerusalem</strong>
+
+      <div class="paper-meta">
+        Bachelor of Science (B.Sc.) · Computer Science and Statistics · Data Science Track
+      </div>
+
+      <div class="muted" style="margin-top: 6px;">
+        Mentored by Prof. Matan Gavish, School of Computer Science and Engineering, and
+        Prof. Asaf Weinstein, Department of Statistics and Data Science.
+      </div>
     </div>
   </div>
 
 </div>
-    <div class="section">
+<div class="section">
   <h2>Professional Experience</h2>
 
   <ul class="timeline">
