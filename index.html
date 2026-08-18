@@ -213,7 +213,31 @@
         display: block;
         margin-left: auto;
       }
+.profile-card {
+  width: 160px;
+  margin-left: auto;
+}
 
+.profile-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.profile-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-links img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  display: block;
+}
     /* .section{
       padding: 14px 0;
       border-top: 1px solid var(--border);
@@ -321,22 +345,33 @@
       text-align: right;
     }
 
-    @media (max-width: 820px){
-      .intro-left, .intro-right{
-        display:block;
-        width:100%;
-      }
-.profile-img{
-  width: 140px;         /* slightly smaller */
-  height: 140px;
-  margin-left: auto;
+   @media (max-width: 820px){
+
+  .intro-left, .intro-right{
+    display:block;
+    width:100%;
+  }
+
+  .profile-img{
+    width: 140px;
+    height: 140px;
+    margin-left: auto;
+  }
+
+  .profile-card {
+    width: 140px;
+    margin-left: auto;
+  }
+
+  .paper-row td{
+    display:block;
+    width:100%;
+  }
+
+  .thumb{
+    max-width: 100%;
+  }
 }
-      .paper-row td{
-        display:block;
-        width:100%;
-      }
-      .thumb{ max-width: 100%; }
-    }
   </style>
 </head>
 
@@ -370,37 +405,47 @@
         <p class="muted">
           Philadelphia, PA · University of Pennsylvania
         </p>
-
-<p style="margin-top: 14px; display: flex; align-items: center; gap: 14px;">
-  
-  <a href="https://scholar.google.com/citations?user=odp1n3kAAAAJ&hl=en"
-     target="_blank" rel="noopener"
-     aria-label="Google Scholar">
-    <img src="assets/scholar1.png"
-         alt="Google Scholar"
-         style="width: 24px; height: 24px; object-fit: contain;">
-  </a>
-
-  <a href="https://www.linkedin.com/in/adi-shnaidman/"
-     target="_blank" rel="noopener"
-     aria-label="LinkedIn">
-    <img src="assets/linkedin.jpg"
-         alt="LinkedIn"
-         style="width: 24px; height: 24px; object-fit: contain;">
-  </a>
-
-<a href="mailto:adi1@engineering.upenn.edu"
-   aria-label="Email"
-   title="Email">
-  <img src="assets/gmail.png"
-       alt="Email"
-       style="width: 24px; height: 24px; object-fit: contain;">
-</a>
-</p>
         </td>
 
 <td class="intro-right">
-  <img class="profile-img" src="assets/profile.jpg" alt="Adi Shnaidman">
+
+  <div class="profile-card">
+
+    <img class="profile-img"
+         src="assets/profile.jpg"
+         alt="Adi Shnaidman">
+
+    <div class="profile-links">
+
+      <a href="https://scholar.google.com/citations?user=odp1n3kAAAAJ&hl=en"
+         target="_blank"
+         rel="noopener"
+         aria-label="Google Scholar"
+         title="Google Scholar">
+        <img src="assets/scholar1.png"
+             alt="Google Scholar">
+      </a>
+
+      <a href="https://www.linkedin.com/in/adi-shnaidman/"
+         target="_blank"
+         rel="noopener"
+         aria-label="LinkedIn"
+         title="LinkedIn">
+        <img src="assets/linkedin.jpg"
+             alt="LinkedIn">
+      </a>
+
+      <a href="mailto:adi1@engineering.upenn.edu"
+         aria-label="Email"
+         title="Email">
+        <img src="assets/gmail.png"
+             alt="Email">
+      </a>
+
+    </div>
+
+  </div>
+
 </td>
       </tr>
     </table>
