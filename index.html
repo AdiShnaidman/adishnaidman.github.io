@@ -27,7 +27,6 @@
         rel="stylesheet">
 
   <style>  
-    <meta name="twitter:card" content="summary_large_image">
 
 
 /* Timeline */
@@ -320,10 +319,19 @@
     .paper-click:hover{ background:#f8fafc; }
 
     .intro-table{
-      width:100%;
-      border:0;
-      margin: 22px auto 6px;
-    }
+  width:100%;
+  border:0;
+  margin: 22px auto 6px;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.intro-table,
+.intro-table tr,
+.intro-table td {
+  border: none !important;
+  background: transparent;
+}
     .intro-name-row td{
       padding: 0 16px 6px;
     }
