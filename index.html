@@ -60,14 +60,15 @@
 }
 
 .timeline .when{
-  font-size: 13px;
+  font-size: 13.5px;
+  font-weight: 400;
   color: var(--muted);
   text-align: left;
   line-height: 1.4;
   padding-top: 2px;
   white-space: nowrap;
 }
-
+    
 /* dot */
 .timeline li::before{
   content:"";
@@ -84,21 +85,34 @@
 
 .timeline .what{ padding-left: 6px; }
 
-.timeline .role{
-  font-weight: 700;
-}
-
 .timeline .org{
   font-weight: 500;
 }
 
 .timeline .org-header{
   font-weight: 700;
-  font-size: 15px;
+  font-size: 16px;
+  line-height: 1.4;
   color: var(--text);
-  margin-bottom: 8px;
+  margin-bottom: 5px;
 }
 
+.timeline .role{
+  font-weight: 500;
+}
+
+.timeline .role-line{
+  font-size: 14.5px;
+  line-height: 1.4;
+}
+
+.timeline .desc{
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+    
 .timeline .subrole{
   padding-left: 12px;
   border-left: 2px solid var(--border);
@@ -107,15 +121,6 @@
 
 .timeline .subrole:last-child{
   margin-bottom: 0;
-}
-
-.timeline .role-line{
-  font-size: 15px;
-}
-.timeline .desc{
-  margin-top: 4px;
-  color: var(--muted);
-  font-size: 14px;
 }
 
 /* Mobile */
@@ -132,27 +137,6 @@
   .timeline li::before{ left: 10px; }
 }
 
-  /* Mobile: stack */
-  @media (max-width: 820px){
-    .timeline::before{ left: 10px; }
-    .timeline li{
-      grid-template-columns: 1fr;
-      padding-left: 26px;
-    }
-    .timeline .when{
-      text-align: left;
-      margin-bottom: 4px;
-    }
-    .timeline li::before{ left: 10px; }
-  }
-
-    /* :root{
-      --accent:#2563eb;
-      --text:#111827;
-      --muted:#4b5563;
-      --border:#e5e7eb;
-      --highlight:#fff7cc;
-    } */
 :root{
   --accent:#2563eb;
   --text:#111827;
@@ -174,13 +158,17 @@
       background: #fff;
       line-height: 1.55;
     } */
-    body{
-      font-family: "Roboto", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      color: var(--text);
-      background: linear-gradient(180deg, #eef2ff 0%, var(--page) 240px, var(--page) 100%);
-      line-height: 1.55;
-    }
-
+body{
+  font-family: "Roboto", system-ui, -apple-system, BlinkMacSystemFont,
+               "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text);
+  background: linear-gradient(180deg, #eef2ff 0%, var(--page) 240px, var(--page) 100%);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
     .wrap{
       width:100%;
       max-width:1040px;
@@ -192,21 +180,22 @@
     a{ color: var(--accent); text-decoration:none; font-weight: 500; }
     a:hover{ text-decoration:underline; }
 
-    h1.name{
-      font-size: 38px;
-      margin: 0 0 10px 0;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      text-align: center;
-    }
+h1.name{
+  font-size: 40px;
+  line-height: 1.1;
+  margin: 0 0 12px 0;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  text-align: center;
+}
 
-    h2{
-      margin: 0 0 8px 0;
-      font-size: 24px;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-    }
-
+h2{
+  margin: 0 0 14px 0;
+  font-size: 23px;
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
     p{ margin: 10px 0; }
     .muted{ color: var(--muted); }
 
@@ -281,12 +270,18 @@
       display:block;
     }
 
-    .paper-meta{
-      font-size: 14px;
-      color: var(--muted);
-      margin-top: 3px;
-    }
-    .education-item {
+.paper-meta{
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
+  margin-top: 3px;
+}
+.paper-row p.muted{
+  font-size: 14.5px;
+  line-height: 1.6;
+  margin-top: 8px;
+}  
+.education-item {
   display: flex;
   align-items: center;
   gap: 14px;
@@ -305,15 +300,45 @@
 .education-info {
   min-width: 0;
 }
+.education-school{
+  font-size: 17px;
+  line-height: 1.35;
+  font-weight: 700;
+  color: var(--text);
+}
 
-    a.papertitle{
-      color: var(--text);
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 17px;
-      display:inline-block;
-      margin-bottom: 4px;
-    }
+.education-degree{
+  margin-top: 4px;
+  font-size: 15px;
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--text);
+}
+
+.education-detail{
+  margin-top: 6px;
+  font-size: 14.5px;
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.education-date{
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--muted);
+}
+a.papertitle{
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 16.5px;
+  line-height: 1.4;
+  display: inline-block;
+  margin-bottom: 5px;
+}
     a.papertitle:hover{ text-decoration: underline; }
 
     .paper-click:hover{ background:#f8fafc; }
@@ -750,21 +775,25 @@
     >
 
 <div class="education-info">
-  <strong>University of Pennsylvania</strong>
 
-  <div class="paper-meta">
+  <div class="education-school">
+    University of Pennsylvania
+  </div>
+
+  <div class="education-degree">
     Master of Science in Engineering (MSE) · Computer and Information Science
   </div>
 
-  <div class="muted" style="margin-top: 6px;">
+  <div class="education-detail">
     <strong>Research affiliations:</strong>
     Cognitive Computation Group (CogComp) · Safe AI @ Penn · Penn Data Science Group
   </div>
 
-  <div class="muted" style="margin-top: 6px;">
+  <div class="education-date">
     2026 – 2028
   </div>
-</div>  
+
+</div>
   </div>
 
 
@@ -775,18 +804,18 @@
       alt="The Hebrew University of Jerusalem logo"
     >
 
-    <div class="education-info">
-      <strong>The Hebrew University of Jerusalem</strong>
+<div class="education-info">
+  <strong>The Hebrew University of Jerusalem</strong>
 
-      <div class="paper-meta">
-        Bachelor of Science (B.Sc.) · Computer Science and Statistics · Data Science Track
-      </div>
+  <div class="paper-meta">
+    Bachelor of Science (B.Sc.) · Computer Science and Statistics · Data Science Track
+  </div>
 
-      <div class="muted" style="margin-top: 6px;">
-        Mentored by Prof. Matan Gavish, School of Computer Science and Engineering, and
-        Prof. Asaf Weinstein, Department of Statistics and Data Science.
-      </div>
-    </div>
+  <div class="muted" style="margin-top: 6px;">
+    Mentored by Prof. Matan Gavish, School of Computer Science and Engineering, and
+    Prof. Asaf Weinstein, Department of Statistics and Data Science.
+  </div>
+</div>
   </div>
 
 </div>
