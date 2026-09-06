@@ -281,6 +281,13 @@ h2{
   line-height: 1.6;
   margin-top: 8px;
 }  
+
+.item-desc{
+  margin-top: 3px;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--muted);
+}
 .education-item {
   display: flex;
   align-items: center;
@@ -333,6 +340,15 @@ h2{
 a.papertitle{
   color: var(--text);
   text-decoration: none;
+  font-weight: 700;
+  font-size: 16.5px;
+  line-height: 1.4;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.paper-title{
+  color: var(--text);
   font-weight: 700;
   font-size: 16.5px;
   line-height: 1.4;
@@ -712,9 +728,9 @@ a.papertitle{
             <img class="thumb" src="assets/brain_tradeoffs.jpg" alt="Structure–Function Tradeoffs thumbnail (optional)">
           </td>
           <td width="75%">
-            <span style="font-weight:700; font-size:17px; display:inline-block; margin-bottom:4px;">
-              Structure–Function Tradeoffs in the Human Brain
-            </span><br>
+          <span class="paper-title">
+            Structure–Function Tradeoffs in the Human Brain
+          </span>
             <span class="paper-meta">Unpublished · 2024</span><br>
             <span class="paper-meta"><strong>A. Shnaidman</strong>, A. Meisel, O. Ventura, R. Schurr, Y. Hart</span>
             <p class="muted">
@@ -805,16 +821,20 @@ a.papertitle{
     >
 
 <div class="education-info">
-  <strong>The Hebrew University of Jerusalem</strong>
 
-  <div class="paper-meta">
+  <div class="education-school">
+    The Hebrew University of Jerusalem
+  </div>
+
+  <div class="education-degree">
     Bachelor of Science (B.Sc.) · Computer Science and Statistics · Data Science Track
   </div>
 
-  <div class="muted" style="margin-top: 6px;">
-    Mentored by Prof. Matan Gavish, School of Computer Science and Engineering, and
-    Prof. Asaf Weinstein, Department of Statistics and Data Science.
+  <div class="education-detail">
+    Mentored by Prof. Matan Gavish, School of Computer Science and Engineering,
+    and Prof. Asaf Weinstein, Department of Statistics and Data Science.
   </div>
+
 </div>
   </div>
 
@@ -946,8 +966,8 @@ a.papertitle{
       <div class="paper-meta">
         Monday.com &amp; The Hebrew University of Jerusalem · 2024
       </div>
-      <div class="muted">
-        Selected among the top 30 students in the School of Computer Science &amp; Engineering
+    <div class="item-desc">
+  Selected among the top 30 students in the School of Computer Science &amp; Engineering
         for outstanding academic and personal achievement.
       </div>
     </li>
@@ -957,8 +977,8 @@ a.papertitle{
       <div class="paper-meta">
         The Hebrew University of Jerusalem · 2024
       </div>
-      <div class="muted">
-        Selected among 100 students recognized by the university for significant volunteer contributions.
+      <div class="item-desc">
+  Selected among 100 students recognized by the university for significant volunteer contributions.
       </div>
     </li>
   </ul>
