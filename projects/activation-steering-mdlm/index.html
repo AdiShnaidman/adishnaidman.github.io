@@ -352,6 +352,41 @@
       text-transform:uppercase;letter-spacing:.06em;white-space:nowrap
     }
 
+    .citation-header{
+      margin-top:32px;
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    .copy-bibtex{
+      appearance:none;
+      border:1px solid var(--ink);
+      background:transparent;
+      color:var(--ink);
+      padding:10px 14px;
+      font-family:"IBM Plex Mono",monospace;
+      font-size:10px;
+      font-weight:600;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      cursor:pointer;
+      transition:background .15s ease,color .15s ease,border-color .15s ease;
+      white-space:nowrap;
+    }
+
+    .copy-bibtex:hover{
+      background:var(--ink);
+      color:var(--paper);
+    }
+
+    .copy-bibtex.copied{
+      background:var(--accent-dark);
+      border-color:var(--accent-dark);
+      color:#fff;
+    }
+
     /* Citation */
     .citation-box{margin-top:32px;border-top:1px solid var(--ink);border-bottom:1px solid var(--rule)}
     pre{
@@ -389,6 +424,7 @@
       .related-tag{grid-column:2}
       .diffusion-row{grid-template-columns:64px 1fr}
       .tok{font-size:9px;padding:6px}
+      .citation-header{align-items:flex-start;flex-direction:column}
       .footer{flex-direction:column}
     }
   </style>
@@ -440,7 +476,7 @@
         <a href="https://arxiv.org/abs/2512.24143" target="_blank" rel="noopener">Paper / arXiv</a>
         <a href="https://openreview.net/forum?id=JhKgHfpIF8" target="_blank" rel="noopener">OpenReview</a>
         <a href="https://arxiv.org/pdf/2512.24143" target="_blank" rel="noopener">PDF</a>
-        <a href="#citation">BibTeX</a>
+        <a href="#citation">Copy BibTeX</a>
       </div>
 
       <div class="diffusion-stage" aria-label="Stylized masked diffusion trajectory">
@@ -831,53 +867,111 @@
     </section>
 
     <section class="section shell">
-      <div class="section-id">07 / Related & follow-up work</div>
-      <h2>Work building around steering in diffusion models</h2>
+      <div class="section-id">07 / Work citing and building on this paper</div>
+      <h2>Follow-up work and extensions</h2>
       <p class="lead">
-        A compact reading list around representation-level control, refusal steering,
-        and masked diffusion models.
+        The works below cite, extend, or build on this paper's activation-steering
+        framework, representation-level analysis, or diffusion-language-model setting.
       </p>
 
       <div class="related-list">
         <div class="related-item">
           <div class="related-no">01</div>
           <div>
-            <a href="https://arxiv.org/abs/2609.04721" target="_blank" rel="noopener">Locating and Steering Refusal Beyond Attention</a>
-            <span>Preethi Carmel Bosco et al.</span>
+            <a href="https://arxiv.org/abs/2609.04721" target="_blank" rel="noopener">
+              Locating and Steering Refusal Beyond Attention
+            </a>
+            <span>Preethi Carmel Bosco, Gopalakrishnan Srinivasan</span>
           </div>
           <span class="related-tag">Refusal steering</span>
         </div>
+
         <div class="related-item">
           <div class="related-no">02</div>
           <div>
-            <a href="https://openreview.net/pdf?id=3JM0DTKxgE" target="_blank" rel="noopener">An Optimal Transport View of Activation Steering in Masked Diffusion Models</a>
+            <a href="https://openreview.net/pdf?id=3JM0DTKxgE" target="_blank" rel="noopener">
+              An Optimal Transport View of Activation Steering in Masked Diffusion Models
+            </a>
             <span>Gert Lek et al.</span>
           </div>
-          <span class="related-tag">Diffusion steering</span>
+          <span class="related-tag">MDLM steering</span>
         </div>
+
         <div class="related-item">
           <div class="related-no">03</div>
           <div>
-            <a href="https://arxiv.org/abs/2605.29626" target="_blank" rel="noopener">DLM-SWAI: Steering Diffusion Language Models Before They Unmask</a>
-            <span>Hyeseon An et al.</span>
+            <a href="https://arxiv.org/abs/2511.06516" target="_blank" rel="noopener">
+              You Had One Job: Per-Task Quantization Using LLMs’ Hidden Representations
+            </a>
+            <span>Amit LeVi et al.</span>
           </div>
-          <span class="related-tag">Pre-unmasking</span>
+          <span class="related-tag">Hidden representations</span>
         </div>
+
         <div class="related-item">
           <div class="related-no">04</div>
           <div>
-            <a href="https://arxiv.org/abs/2604.08557" target="_blank" rel="noopener">Re-Mask and Redirect: Exploiting Denoising Irreversibility in Diffusion Language Models</a>
+            <a href="https://arxiv.org/abs/2502.09755" target="_blank" rel="noopener">
+              Jailbreak Attack Initializations as Extractors of Compliance Directions
+            </a>
+            <span>Amit LeVi et al.</span>
+          </div>
+          <span class="related-tag">Compliance directions</span>
+        </div>
+
+        <div class="related-item">
+          <div class="related-no">05</div>
+          <div>
+            <a href="https://arxiv.org/abs/2605.29626" target="_blank" rel="noopener">
+              DLM-SWAI: Steering Diffusion Language Models Before They Unmask
+            </a>
+            <span>Hyeseon An et al.</span>
+          </div>
+          <span class="related-tag">Pre-unmask steering</span>
+        </div>
+
+        <div class="related-item">
+          <div class="related-no">06</div>
+          <div>
+            <a href="https://arxiv.org/abs/2604.08557" target="_blank" rel="noopener">
+              Re-Mask and Redirect: Exploiting Denoising Irreversibility in Diffusion Language Models
+            </a>
             <span>Arth Singh</span>
           </div>
           <span class="related-tag">Denoising control</span>
         </div>
+
         <div class="related-item">
-          <div class="related-no">05</div>
+          <div class="related-no">07</div>
           <div>
-            <a href="https://arxiv.org/abs/2606.08408" target="_blank" rel="noopener">TimpaTeks: Automatic In-place Text Sequence Modification via Diffusion Language Model Steering</a>
+            <a href="https://arxiv.org/abs/2606.08408" target="_blank" rel="noopener">
+              TimpaTeks: Automatic In-place Text Sequence Modification via Diffusion Language Model Steering
+            </a>
             <span>Ryandito Diandaru et al.</span>
           </div>
-          <span class="related-tag">Text modification</span>
+          <span class="related-tag">Text steering</span>
+        </div>
+
+        <div class="related-item">
+          <div class="related-no">08</div>
+          <div>
+            <a href="https://arxiv.org/abs/2607.00588" target="_blank" rel="noopener">
+              Low Perplexity is Repetition: A One-Dimensional Self-Conditioning Attractor in Continuous Diffusion LMs
+            </a>
+            <span>Shuai Zhang et al.</span>
+          </div>
+          <span class="related-tag">Diffusion representations</span>
+        </div>
+
+        <div class="related-item">
+          <div class="related-no">09</div>
+          <div>
+            <a href="https://arxiv.org/abs/2607.04222" target="_blank" rel="noopener">
+              Unsupervised Features Mining via Activation Geometry
+            </a>
+            <span>Amit LeVi et al.</span>
+          </div>
+          <span class="related-tag">Activation geometry</span>
         </div>
       </div>
     </section>
@@ -885,9 +979,18 @@
     <section class="section shell" id="citation">
       <div class="section-id">08 / Citation</div>
       <h2>Cite this work</h2>
-      <p class="lead">If this paper, method, or analysis is useful in your work, please cite the arXiv version below.</p>
+
+      <div class="citation-header">
+        <p class="lead" style="margin:0;">
+          If this work is useful in your research, copy the BibTeX entry directly.
+        </p>
+        <button class="copy-bibtex" id="copyBibtex" type="button" aria-label="Copy BibTeX citation">
+          Copy BibTeX
+        </button>
+      </div>
+
       <div class="citation-box">
-<pre>@misc{shnaidman2026activationsteeringmaskeddiffusion,
+<pre id="bibtexEntry">@misc{shnaidman2026activationsteeringmaskeddiffusion,
   title         = {Activation Steering for Masked Diffusion Language Models},
   author        = {Adi Shnaidman and Erin Feiglin and Osher Yaari and
                    Efrat Mentel and Amit Levi and Raz Lapid},
@@ -908,6 +1011,37 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    const copyButton = document.getElementById("copyBibtex");
+    const bibtexEntry = document.getElementById("bibtexEntry");
+
+    if (copyButton && bibtexEntry) {
+      copyButton.addEventListener("click", async () => {
+        const text = bibtexEntry.innerText.trim();
+
+        try {
+          await navigator.clipboard.writeText(text);
+        } catch (err) {
+          const textarea = document.createElement("textarea");
+          textarea.value = text;
+          textarea.style.position = "fixed";
+          textarea.style.opacity = "0";
+          document.body.appendChild(textarea);
+          textarea.select();
+          document.execCommand("copy");
+          textarea.remove();
+        }
+
+        const original = copyButton.textContent;
+        copyButton.textContent = "Copied";
+        copyButton.classList.add("copied");
+
+        setTimeout(() => {
+          copyButton.textContent = original;
+          copyButton.classList.remove("copied");
+        }, 1600);
+      });
+    }
   </script>
 </body>
 </html>
