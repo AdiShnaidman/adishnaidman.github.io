@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Activation Steering for Masked Diffusion Language Models | Adi Shnaidman</title>
+  <meta name="description" content="Project page for Activation Steering for Masked Diffusion Language Models (ReALM-GEN @ ICLR 2026): representation-level inference-time control for masked diffusion language models." />
+  <meta name="keywords" content="activation steering, masked diffusion language models, MDLM, diffusion language models, representation engineering, inference-time control, LLaDA, refusal steering, AI safety, mechanistic interpretability" />
+  <meta name="author" content="Adi Shnaidman" />
+
+  <meta property="og:title" content="Activation Steering for Masked Diffusion Language Models" />
+  <meta property="og:description" content="A representation-level inference-time control method for masked diffusion language models." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://adishnaidman.github.io/projects/activation-steering-mdlm/" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="canonical" href="https://adishnaidman.github.io/projects/activation-steering-mdlm/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "Activation Steering for Masked Diffusion Language Models",
+    "author": [
+      {"@type":"Person","name":"Adi Shnaidman","url":"https://adishnaidman.github.io/"},
+      {"@type":"Person","name":"Erin Feiglin"},
+      {"@type":"Person","name":"Osher Yaari"},
+      {"@type":"Person","name":"Efrat Mentel"},
+      {"@type":"Person","name":"Amit Levi"},
+      {"@type":"Person","name":"Raz Lapid"}
+    ],
+    "datePublished": "2025-12-30",
+    "dateModified": "2026-03-29",
+    "sameAs": [
+      "https://arxiv.org/abs/2512.24143",
+      "https://openreview.net/forum?id=JhKgHfpIF8"
+    ],
+    "isPartOf": {"@type":"Event","name":"ReALM-GEN @ ICLR 2026"},
+    "keywords": ["activation steering","masked diffusion language models","representation engineering","inference-time control","AI safety"]
+  }
+  </script>
+
+  <style>
+    :root {
+      --ink: #111827;
+      --muted: #5f6b7a;
+      --faint: #8b97a8;
+      --line: rgba(17, 24, 39, 0.10);
+      --paper: #ffffff;
+      --page: #f5f7fb;
+      --blue: #2563eb;
+      --blue-2: #4f46e5;
+      --blue-soft: rgba(37, 99, 235, 0.08);
+      --green: #0f766e;
+      --green-soft: rgba(15, 118, 110, .08);
+      --shadow: 0 18px 48px rgba(17,24,39,.08);
+      --radius: 20px;
+      --content: 1100px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 15% 0%, rgba(37,99,235,.12), transparent 32rem),
+        radial-gradient(circle at 88% 8%, rgba(79,70,229,.10), transparent 28rem),
+        var(--page);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .shell { width: min(var(--content), calc(100% - 32px)); margin: 0 auto; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px) saturate(150%);
+      -webkit-backdrop-filter: blur(16px) saturate(150%);
+      background: rgba(245,247,251,.80);
+      border-bottom: 1px solid rgba(17,24,39,.07);
+    }
+
+    .topbar-inner {
+      min-height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand { font-weight: 800; color: var(--ink); letter-spacing: -.02em; }
+    .brand span { color: var(--faint); font-weight: 500; }
+    .mini-nav { display: flex; align-items: center; gap: 18px; font-size: 14px; font-weight: 600; }
+    .mini-nav a { color: var(--muted); }
+    .mini-nav a:hover { color: var(--blue); text-decoration: none; }
+
+    .hero { padding: 84px 0 46px; text-align: center; }
+    .eyebrow {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 7px 11px;
+      border: 1px solid rgba(37,99,235,.16);
+      border-radius: 999px;
+      background: rgba(255,255,255,.68);
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    h1 {
+      max-width: 980px;
+      margin: 22px auto 20px;
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: clamp(40px, 6.5vw, 74px);
+      line-height: 1.03;
+      letter-spacing: -.04em;
+      font-weight: 600;
+    }
+    .tagline {
+      max-width: 810px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: clamp(18px, 2.2vw, 23px);
+      line-height: 1.55;
+    }
+
+    .authors { margin: 24px auto 0; color: var(--muted); font-size: 15px; }
+    .authors strong { color: var(--ink); }
+    .venue { margin-top: 8px; font-size: 14px; color: var(--faint); }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 30px;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 17px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--ink);
+      font-weight: 700;
+      font-size: 14px;
+      box-shadow: 0 5px 18px rgba(17,24,39,.05);
+    }
+    .button:hover { transform: translateY(-1px); text-decoration: none; }
+    .button.primary { background: var(--ink); color: white; border-color: var(--ink); }
+
+    .hero-card {
+      margin: 48px auto 0;
+      max-width: 1030px;
+      background: linear-gradient(145deg, rgba(255,255,255,.96), rgba(245,248,255,.98));
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      box-shadow: var(--shadow);
+      padding: 26px;
+      text-align: left;
+    }
+
+    .pipeline {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      gap: 16px;
+      align-items: center;
+    }
+    .pipe-box {
+      min-height: 148px;
+      padding: 20px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.88);
+    }
+    .pipe-box small { color: var(--blue); font-weight: 800; text-transform: uppercase; letter-spacing: .07em; }
+    .pipe-box h3 { margin: 7px 0 5px; font-size: 18px; line-height: 1.25; }
+    .pipe-box p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.55; }
+    .arrow { color: var(--faint); font-size: 24px; font-weight: 800; }
+
+    .section { padding: 42px 0; }
+    .section-heading { max-width: 780px; margin-bottom: 22px; }
+    .kicker { color: var(--blue); font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
+    h2 { margin: 6px 0 8px; font-size: clamp(28px, 4vw, 42px); line-height: 1.15; letter-spacing: -.03em; }
+    .lead { color: var(--muted); font-size: 18px; margin: 0; }
+
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: 0 9px 30px rgba(17,24,39,.05);
+    }
+    .card .number { font-size: 34px; line-height: 1; font-weight: 800; letter-spacing: -.04em; color: var(--blue); }
+    .card h3 { margin: 13px 0 7px; font-size: 17px; line-height: 1.3; }
+    .card p { margin: 0; color: var(--muted); font-size: 14px; }
+
+    .results-grid { display: grid; grid-template-columns: 1.08fr .92fr; gap: 18px; }
+    .result-panel { background: white; border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; box-shadow: 0 9px 30px rgba(17,24,39,.05); }
+    .result-panel h3 { margin: 0 0 6px; font-size: 20px; }
+    .result-panel > p { color: var(--muted); margin: 0 0 20px; font-size: 14px; }
+
+    .bars { display: grid; gap: 13px; }
+    .bar-row { display: grid; grid-template-columns: 152px 1fr 44px; gap: 10px; align-items: center; font-size: 13px; }
+    .bar-label { color: var(--muted); font-weight: 600; }
+    .bar-track { height: 11px; background: #eef2f7; border-radius: 999px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--blue), var(--blue-2)); }
+    .bar-value { text-align: right; font-weight: 800; }
+
+    .callout {
+      margin-top: 18px;
+      padding: 17px 18px;
+      border-radius: 16px;
+      background: var(--blue-soft);
+      border: 1px solid rgba(37,99,235,.12);
+      color: #24324a;
+      font-size: 14px;
+    }
+
+    .quote {
+      padding: 24px;
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, rgba(15,118,110,.07), rgba(37,99,235,.06));
+      border: 1px solid rgba(15,118,110,.12);
+      font-size: 19px;
+      line-height: 1.55;
+    }
+    .quote strong { color: var(--green); }
+
+    .figure-card { overflow: hidden; padding: 0; }
+    .figure-card img { display: block; width: 100%; background: white; }
+    .figure-caption { padding: 15px 18px 18px; color: var(--muted); font-size: 13px; }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .abstract { font-family: "Source Serif 4", Georgia, serif; font-size: 18px; line-height: 1.72; color: #303947; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 11px 12px; text-align: left; border-bottom: 1px solid var(--line); }
+    th { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; }
+    td.num { font-variant-numeric: tabular-nums; font-weight: 700; text-align: right; }
+
+    .related-list { display: grid; gap: 10px; }
+    .related-item { padding: 15px 16px; border: 1px solid var(--line); border-radius: 14px; background: white; }
+    .related-item a { font-weight: 700; color: var(--ink); }
+    .related-item span { display: block; color: var(--muted); font-size: 13px; margin-top: 3px; }
+
+    pre {
+      margin: 0;
+      padding: 18px;
+      overflow-x: auto;
+      border-radius: 15px;
+      background: #0f172a;
+      color: #e5e7eb;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .footer { padding: 38px 0 54px; color: var(--faint); font-size: 13px; text-align: center; }
+
+    @media (max-width: 920px) {
+      .pipeline { grid-template-columns: 1fr; }
+      .arrow { transform: rotate(90deg); justify-self: center; }
+      .grid-4 { grid-template-columns: 1fr 1fr; }
+      .results-grid, .two-col { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      .hero { padding-top: 54px; }
+      .mini-nav { display: none; }
+      .grid-4 { grid-template-columns: 1fr; }
+      .hero-card { padding: 16px; }
+      .bar-row { grid-template-columns: 120px 1fr 40px; }
+      .authors { line-height: 1.8; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <a class="brand" href="../../index.html">Adi Shnaidman <span>/ Research</span></a>
+      <nav class="mini-nav" aria-label="Project navigation">
+        <a href="#overview">Overview</a>
+        <a href="#results">Results</a>
+        <a href="#method">Method</a>
+        <a href="#citation">Citation</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero shell">
+      <div class="eyebrow">ReALM-GEN @ ICLR 2026 · Masked Diffusion LMs</div>
+      <h1>Activation Steering for Masked Diffusion Language Models</h1>
+      <p class="tagline">A lightweight representation-level control primitive for steering masked diffusion language models at inference time — using a single low-dimensional direction extracted from contrastive prompts.</p>
+
+      <p class="authors"><strong>Adi Shnaidman</strong> · Erin Feiglin · Osher Yaari · Efrat Mentel · Amit Levi · Raz Lapid</p>
+      <p class="venue">DeepKeep · Technion—Israel Institute of Technology</p>
+
+      <div class="actions">
+        <a class="button primary" href="https://arxiv.org/abs/2512.24143" target="_blank" rel="noopener">Paper · arXiv</a>
+        <a class="button" href="https://openreview.net/forum?id=JhKgHfpIF8" target="_blank" rel="noopener">OpenReview</a>
+        <a class="button" href="https://arxiv.org/pdf/2512.24143" target="_blank" rel="noopener">PDF</a>
+        <a class="button" href="#citation">BibTeX</a>
+      </div>
+
+      <div class="hero-card" aria-label="Method overview">
+        <div class="pipeline">
+          <div class="pipe-box">
+            <small>1 · Extract</small>
+            <h3>Contrastive prompt sets</h3>
+            <p>Run harmful and harmless prompts through the model once and compute a normalized residual-stream difference direction.</p>
+          </div>
+          <div class="arrow">→</div>
+          <div class="pipe-box">
+            <small>2 · Select</small>
+            <h3>One steering direction</h3>
+            <p>Choose a single layer–token direction on a held-out validation set. No optimization through the denoising trajectory is required.</p>
+          </div>
+          <div class="arrow">→</div>
+          <div class="pipe-box">
+            <small>3 · Apply</small>
+            <h3>Steer reverse diffusion</h3>
+            <p>Apply the selected direction to residual activations across token positions, layers, and reverse-diffusion steps at inference time.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section shell" id="overview">
+      <div class="section-heading">
+        <div class="kicker">What we found</div>
+        <h2>Diffusion models expose a different geometry of control.</h2>
+        <p class="lead">The work adapts activation steering to MDLMs and uses safety refusal as a deployment-relevant case study to study where, when, and how behavioral directions are accessible during diffusion.</p>
+      </div>
+
+      <div class="grid-4">
+        <article class="card">
+          <div class="number">1D</div>
+          <h3>Low-dimensional refusal control</h3>
+          <p>A single activation direction induces large, systematic shifts in refusal behavior across multiple masked diffusion models.</p>
+        </article>
+        <article class="card">
+          <div class="number">Pre</div>
+          <h3>Pre-instruction access</h3>
+          <p>Unlike causal autoregressive models, effective directions can be extracted from tokens before the user instruction.</p>
+        </article>
+        <article class="card">
+          <div class="number">Early</div>
+          <h3>Timing matters</h3>
+          <p>Steering has its strongest leverage at early denoising steps, with the earliest diffusion block contributing disproportionately.</p>
+        </article>
+        <article class="card">
+          <div class="number">跨</div>
+          <h3>Language transfer</h3>
+          <p>Directions transfer strongly between English and Chinese within a multilingual MDLM, but not reliably across architectures.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section shell" id="results">
+      <div class="section-heading">
+        <div class="kicker">Main result</div>
+        <h2>Activation steering outperforms prompt- and optimization-based jailbreak baselines.</h2>
+        <p class="lead">On JailbreakBench, steering sharply reduces both keyword-based refusal and LLaMA Guard 2 safety scores across the evaluated MDLMs.</p>
+      </div>
+
+      <div class="results-grid">
+        <div class="result-panel">
+          <h3>LLaDA-8B-Instruct · LLaMA Guard 2 safety score</h3>
+          <p>Lower is more successful at suppressing safety refusal in this evaluation.</p>
+          <div class="bars">
+            <div class="bar-row"><div class="bar-label">Direct</div><div class="bar-track"><div class="bar-fill" style="width:99%"></div></div><div class="bar-value">99</div></div>
+            <div class="bar-row"><div class="bar-label">GCG</div><div class="bar-track"><div class="bar-fill" style="width:99%"></div></div><div class="bar-value">99</div></div>
+            <div class="bar-row"><div class="bar-label">PAIR</div><div class="bar-track"><div class="bar-fill" style="width:64%"></div></div><div class="bar-value">64</div></div>
+            <div class="bar-row"><div class="bar-label">Slice</div><div class="bar-track"><div class="bar-fill" style="width:57%"></div></div><div class="bar-value">57</div></div>
+            <div class="bar-row"><div class="bar-label">Steering · pre</div><div class="bar-track"><div class="bar-fill" style="width:19%"></div></div><div class="bar-value">19</div></div>
+            <div class="bar-row"><div class="bar-label">Steering · post</div><div class="bar-track"><div class="bar-fill" style="width:16%"></div></div><div class="bar-value">16</div></div>
+          </div>
+          <div class="callout"><strong>Key observation:</strong> directions extracted from pre-instruction and post-instruction positions yield similarly strong effects, consistent with non-causal parallel processing in masked diffusion models.</div>
+        </div>
+
+        <div class="quote">
+          <strong>Diffusion-specific accessibility.</strong><br /><br />
+          In an autoregressive transformer, earlier prompt tokens cannot attend to later instruction content. In an MDLM mask predictor, the full sequence is processed in parallel — making behavior-relevant information accessible at structurally earlier token positions.
+        </div>
+      </div>
+
+      <div class="two-col" style="margin-top:18px;">
+        <div class="card figure-card">
+          <img src="https://arxiv.org/html/2512.24143v3/combined_validation_heatmap.png" alt="Validation heatmap of safety scores across layers and token positions" loading="lazy" />
+          <div class="figure-caption">Validation heatmaps localize strong steering directions to specific layer–token regions. Source: Figure 3 of the paper.</div>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0;">Selected test-set results</h3>
+          <div style="overflow-x:auto;">
+            <table>
+              <thead>
+                <tr><th>Model</th><th>Method</th><th style="text-align:right;">Refusal ↓</th><th style="text-align:right;">Guard ↓</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>LLaDA-8B</td><td>Direct</td><td class="num">97</td><td class="num">99</td></tr>
+                <tr><td>LLaDA-8B</td><td>Steering · pre</td><td class="num">4</td><td class="num">19</td></tr>
+                <tr><td>LLaDA-8B</td><td>Steering · post</td><td class="num">0</td><td class="num">16</td></tr>
+                <tr><td>LLaDA-1.5</td><td>Direct</td><td class="num">98</td><td class="num">100</td></tr>
+                <tr><td>LLaDA-1.5</td><td>Steering · pre</td><td class="num">6</td><td class="num">20</td></tr>
+                <tr><td>LLaDA-1.5</td><td>Steering · post</td><td class="num">7</td><td class="num">19</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="color:var(--muted);font-size:13px;margin-bottom:0;">Scores are percentages on harmful prompts; lower values indicate fewer refusals / safety flags.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section shell" id="method">
+      <div class="section-heading">
+        <div class="kicker">Method</div>
+        <h2>A single forward pass to extract; a global intervention to steer.</h2>
+      </div>
+      <div class="two-col">
+        <div class="card">
+          <h3 style="margin-top:0;">Direction extraction</h3>
+          <p>For each candidate layer and structural token position, the method computes the mean residual activation for harmful and harmless prompt sets and takes the normalized difference:</p>
+          <div style="padding:18px;border-radius:14px;background:#f8fafc;border:1px solid var(--line);font-family:Georgia,serif;font-size:18px;text-align:center;">v = (μ<sub>harmful</sub> − μ<sub>harmless</sub>) / ‖μ<sub>harmful</sub> − μ<sub>harmless</sub>‖₂</div>
+          <p style="color:var(--muted);font-size:14px;">A single layer–token direction is selected on a held-out harmful validation set and reused for inference-time steering.</p>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0;">Direction application</h3>
+          <p>The selected direction is applied through a projection-based residual-stream intervention during reverse diffusion. In the main setup, the same direction is used across all layers, token positions, and denoising steps.</p>
+          <div class="callout" style="margin-top:16px;"><strong>No finetuning.</strong> No parameter update, no trajectory-level optimization, and no alteration of the underlying sampling algorithm are required.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section shell">
+      <div class="section-heading">
+        <div class="kicker">Abstract</div>
+        <h2>Paper abstract</h2>
+      </div>
+      <div class="card abstract">
+        Masked diffusion language models (MDLMs) generate text via iterative masked-token denoising, enabling mask-parallel decoding and distinct controllability and efficiency tradeoffs from autoregressive LLMs. Yet, efficient representation-level mechanisms for inference-time control in MDLMs remain largely unexplored. To address this gap, we introduce an activation steering primitive for MDLMs: we extract a single low-dimensional direction from contrastive prompt sets using one prompt-only forward pass, and apply a global intervention on residual-stream activations throughout reverse diffusion, without performing optimization or altering the diffusion sampling procedure. Using safety refusal as a deployment-relevant case study, we find that refusal behavior in multiple MDLMs is governed by a consistent, approximately one-dimensional activation subspace. Applying the corresponding direction yields large and systematic behavioral shifts and is substantially more effective than prompt-based and optimization-based baselines. We further uncover diffusion-specific accessibility: effective directions can be extracted not only from post-instruction tokens, but also from pre-instruction tokens that are typically ineffective in autoregressive models due to causal attention. Ablations localize maximal leverage to early denoising steps and mid-to-late transformer layers, with early diffusion blocks contributing disproportionately. Finally, in an MDLM trained on English and Chinese, extracted directions transfer strongly between English and Chinese, but do not reliably generalize to an autoregressive architecture, highlighting architecture-dependent representations of safety constraints.
+      </div>
+    </section>
+
+    <section class="section shell">
+      <div class="section-heading">
+        <div class="kicker">Related & follow-up work</div>
+        <h2>Work building around steering in diffusion models</h2>
+        <p class="lead">A small reading list around representation-level control, refusal steering, and masked diffusion models.</p>
+      </div>
+      <div class="related-list">
+        <div class="related-item"><a href="https://arxiv.org/abs/2609.04721" target="_blank" rel="noopener">Locating and Steering Refusal Beyond Attention</a><span>Preethi Carmel Bosco et al. · refusal localization and steering</span></div>
+        <div class="related-item"><a href="https://openreview.net/pdf?id=3JM0DTKxgE" target="_blank" rel="noopener">An Optimal Transport View of Activation Steering in Masked Diffusion Models</a><span>Gert Lek et al. · activation transport / diffusion steering</span></div>
+        <div class="related-item"><a href="https://arxiv.org/abs/2605.29626" target="_blank" rel="noopener">DLM-SWAI: Steering Diffusion Language Models Before They Unmask</a><span>Hyeseon An et al. · steering before token unmasking</span></div>
+        <div class="related-item"><a href="https://arxiv.org/abs/2604.08557" target="_blank" rel="noopener">Re-Mask and Redirect: Exploiting Denoising Irreversibility in Diffusion Language Models</a><span>Arth Singh · control through the denoising process</span></div>
+        <div class="related-item"><a href="https://arxiv.org/abs/2606.08408" target="_blank" rel="noopener">TimpaTeks: Automatic In-place Text Sequence Modification via Diffusion Language Model Steering</a><span>Ryandito Diandaru et al. · diffusion-language-model steering for text modification</span></div>
+      </div>
+    </section>
+
+    <section class="section shell" id="citation">
+      <div class="section-heading">
+        <div class="kicker">Citation</div>
+        <h2>Cite this work</h2>
+        <p class="lead">If this paper, method, or analysis is useful in your work, please cite the arXiv version below.</p>
+      </div>
+      <pre>@misc{shnaidman2026activationsteeringmaskeddiffusion,
+  title        = {Activation Steering for Masked Diffusion Language Models},
+  author       = {Adi Shnaidman and Erin Feiglin and Osher Yaari and
+                  Efrat Mentel and Amit Levi and Raz Lapid},
+  year         = {2026},
+  eprint       = {2512.24143},
+  archivePrefix= {arXiv},
+  primaryClass = {cs.CL},
+  url          = {https://arxiv.org/abs/2512.24143}
+}</pre>
+    </section>
+  </main>
+
+  <footer class="footer shell">
+    <div>Project page for <em>Activation Steering for Masked Diffusion Language Models</em>.</div>
+    <div style="margin-top:5px;">© <span id="year"></span> Adi Shnaidman · <a href="../../index.html">Back to personal site</a></div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
