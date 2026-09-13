@@ -221,13 +221,13 @@
 
     /* Main layout */
 
-    .content-grid{
-      display:grid;
-      grid-template-columns:minmax(0,1.25fr) minmax(300px,.75fr);
-      gap:18px;
-      align-items:start;
-    }
-
+  .content-grid{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    max-width:820px;
+    margin:0 auto;
+  }
     .section{
       position:relative;
 
@@ -311,12 +311,9 @@
       line-height:1.65;
     }
 
-    /* Support card */
-
     .support-card{
-      position:sticky;
-      top:92px;
-    }
+  position:relative;
+}
 
     .support-intro{
       margin-bottom:22px;
@@ -500,15 +497,6 @@
 
     @media(max-width:820px){
 
-      .content-grid{
-        grid-template-columns:1fr;
-      }
-
-      .support-card{
-        position:relative;
-        top:auto;
-      }
-
       .hero{
         padding:34px 26px 32px 30px;
       }
@@ -616,8 +604,7 @@
         </p>
       </section>
 
-      <aside class="section support-card">
-
+        <section class="section support-card">
         <h2>Support</h2>
 
         <div class="support-intro">
@@ -680,8 +667,7 @@
 
         </div>
 
-      </aside>
-
+      </section>
     </main>
 
     <footer class="footer">
